@@ -37,3 +37,48 @@ exports.post_signup = ( req, res ) => {
     })
 
 }
+
+exports.post_signin = (req, res) => {
+
+    getConnection((connection) => {
+
+        connection.query(`select pw, admin from user where id = '${req.body.id}';`, function(err, result) {
+            if(!err) {
+                console.log(result);
+                if(result[0].pw == req.body.pw) {
+                    if(result[0].admin) {
+                        res.send({admin: true, acess: true});
+                    } else {
+                        res.send({admin: false, acess: true});
+                    }
+                } else {
+                    console.log({message: 'pw is not correct'});
+                    res.send({message: 'pw is not correct'}); 
+                }
+            } else {
+                console.log({message: 'id is not exist'});
+                res.send({message: 'id is not exist'});
+            }
+        })
+
+        connection.release();
+    })
+}
+
+exports.post_forgot = (req, res) => {
+
+    getConnection((connection) => {
+
+        connection.query(`update user set pw = '${req.body.pw}' where id='${req.body.id}' and admin=false;`, function(err) {
+            if(!err) {
+                console.log({message: 'forgot=>reset pw: success'});
+                res.send({forgot: true});
+            } else {
+                console.log({message: 'id is not exist'});
+                res.send({message: 'id is not exist'});
+            }
+        }) 
+
+        connection.release();
+    })
+}

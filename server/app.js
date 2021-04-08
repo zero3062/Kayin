@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
 
 class App {
@@ -11,7 +10,6 @@ class App {
 
     setMiddleWare() {
         this.app.use(logger('dev'));
-        this.app.use(bodyParser.json());
     }
 
     getRouting (){

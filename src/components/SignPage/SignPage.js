@@ -28,6 +28,17 @@ const SignPage = ({ signOption, userId, userPw, onChangeSign }) => {
             .catch(err => {
                 console.log(err);
             })
+        } else {
+            axios.post(`http://10.156.145.178:8080/user/signin`, {
+                id: userId,
+                pw: userPw
+            })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
     }
 
