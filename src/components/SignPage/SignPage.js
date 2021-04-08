@@ -7,12 +7,29 @@ import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
 import { setSign } from '../../actions/Sign';
 
+const axios = require('axios');
+
 const SignPage = ({ signOption, userId, userPw, onChangeSign }) => {
     let history = useHistory();
 
     useEffect(() => {
         onChangeSign('', '');
     }, [onChangeSign])
+
+    const handleSign = () => {
+        if(signOption === "Up") {
+            axios.post(`http://10.156.145.178:8080/user/signup`, {
+                id: userId,
+                pw: userPw
+            })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    }
 
     return (
         <SignPageStyle.Container>
@@ -24,7 +41,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeSign }) => {
                 <SignPageStyle.Input>
                     <SignPageStyle.ID type="text" onChange={(e) => onChangeSign(e.target.value, userPw)} value={userId} placeholder="ID"/>
                     <SignPageStyle.Pass type="password" onChange={(e) => onChangeSign(userId, e.target.value)} value={userPw} placeholder="Password"/>
-                    <SignPageStyle.Submit type="button" value={"Sign "+signOption}/>
+                    <SignPageStyle.Submit type="button" onClick={() => handleSign()} value={"Sign "+signOption}/>
                 </SignPageStyle.Input>
                 { signOption === "In" &&
                     <SignPageStyle.Bottom>
