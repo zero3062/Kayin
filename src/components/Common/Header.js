@@ -17,6 +17,7 @@ const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
 
     const handleSignOut = () => {
         localStorage.removeItem('userItem');
+        onChangeOption(0);
         onChangeAuth(false, false);
         history.push({
             pathname: '/'

@@ -19,10 +19,11 @@ export const Container = styled.div`
 
 export const Contents = styled.div`
     color: white;
+    width: 60vw;
     position: absolute;
-    left: 80px;
+    left: 8vw;
     top: 50%;
-    transfomr: transX(-50%);
+    transform: translateY(-50%);
 `;
 
 export const HeadContent = styled.div`

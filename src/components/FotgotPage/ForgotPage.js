@@ -32,6 +32,12 @@ const ForgotPage = ({ userId, userPw, onChangeSign }) => {
         })
     }
 
+    const handleKeyDown = (e) => {
+        if(e.keyCode === 13) {
+            handleForgot();
+        }
+    }
+
     return (
         <ForgotPageStyle.Container>
             <ForgotPageStyle.Contents>
@@ -40,8 +46,8 @@ const ForgotPage = ({ userId, userPw, onChangeSign }) => {
                     <ForgotPageStyle.UnderBar/>
                 </ForgotPageStyle.Head>
                 <ForgotPageStyle.Input>
-                <ForgotPageStyle.ID type="text" onChange={(e) => onChangeSign(e.target.value, userPw)} value={userId} placeholder="ID"/>
-                    <ForgotPageStyle.Pass type="password" onChange={(e) => onChangeSign(userId, e.target.value)} value={userPw} placeholder="Password"/>
+                    <ForgotPageStyle.ID type="text" onChange={(e) => onChangeSign(e.target.value, userPw)} value={userId} placeholder="ID"/>
+                    <ForgotPageStyle.Pass type="password" onChange={(e) => onChangeSign(userId, e.target.value)} onKeyUp={(e) => handleKeyDown(e)} value={userPw} placeholder="Password"/>
                     <ForgotPageStyle.Submit type="button" onClick={() => handleForgot()} value="Reset Password"/>
                 </ForgotPageStyle.Input>
             </ForgotPageStyle.Contents>

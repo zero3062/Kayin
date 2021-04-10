@@ -60,6 +60,12 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
         }
     }
 
+    const handleKeyDown = (e) => {
+        if(e.keyCode === 13) {
+            handleSign();
+        }
+    }
+
     return (
         <SignPageStyle.Container>
             <SignPageStyle.Contents>
@@ -69,7 +75,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 </SignPageStyle.Head>
                 <SignPageStyle.Input>
                     <SignPageStyle.ID type="text" onChange={(e) => onChangeSign(e.target.value, userPw)} value={userId} placeholder="ID"/>
-                    <SignPageStyle.Pass type="password" onChange={(e) => onChangeSign(userId, e.target.value)} value={userPw} placeholder="Password"/>
+                    <SignPageStyle.Pass type="password" onChange={(e) => onChangeSign(userId, e.target.value)} onKeyUp={(e) => handleKeyDown(e)} value={userPw} placeholder="Password"/>
                     <SignPageStyle.Submit type="button" onClick={() => handleSign()} value={"Sign "+signOption}/>
                 </SignPageStyle.Input>
                 { signOption === "In" &&
