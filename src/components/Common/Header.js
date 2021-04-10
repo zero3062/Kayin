@@ -9,6 +9,20 @@ import { setHeader } from '../../actions/Header';
 const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
     let history = useHistory();
 
+    const local = localStorage.getItem('userItem');
+
+    if(local) {
+        onChangeAuth(true, JSON.parse(local).admin);
+    }
+
+    const handleSignOut = () => {
+        localStorage.removeItem('userItem');
+        onChangeAuth(false, false);
+        history.push({
+            pathname: '/'
+        })
+    }
+
     return (
         <HeaderStyle.Container>
             <HeaderStyle.Contents>
@@ -17,7 +31,7 @@ const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(1) : alert("메뉴 접근 관한이 없습니다")}>Notice</HeaderStyle.MenuItem>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(2) : alert("메뉴 접근 관한이 없습니다")}>Work</HeaderStyle.MenuItem>
                     { auth ?
-                        <HeaderStyle.MenuItem>Sign Out</HeaderStyle.MenuItem>
+                        <HeaderStyle.MenuItem onClick={() => handleSignOut()}>Sign Out</HeaderStyle.MenuItem>
                     :
                         <HeaderStyle.MenuItem onClick={() => {onChangeOption(0);history.push('/signin')}}>Sign In</HeaderStyle.MenuItem>
                     }

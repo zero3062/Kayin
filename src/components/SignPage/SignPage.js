@@ -9,7 +9,7 @@ import { setSign } from '../../actions/Sign';
 
 const axios = require('axios');
 
-const SignPage = ({ signOption, userId, userPw, onChangeSign }) => {
+const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) => {
     let history = useHistory();
 
     useEffect(() => {
@@ -17,24 +17,42 @@ const SignPage = ({ signOption, userId, userPw, onChangeSign }) => {
     }, [onChangeSign])
 
     const handleSign = () => {
+
         if(signOption === "Up") {
-            axios.post(`http://10.156.145.178:8080/user/signup`, {
+            axios.post(`http://192.168.25.50:8080/user/signup`, {
                 id: userId,
                 pw: userPw
             })
             .then(res => {
                 console.log(res);
+                history.push({
+                    pathname: '/signin'
+                })
             })
             .catch(err => {
                 console.log(err);
             })
         } else {
-            axios.post(`http://10.156.145.178:8080/user/signin`, {
+            axios.post(`http://192.168.25.50:8080/user/signin`, {
                 id: userId,
                 pw: userPw
             })
             .then(res => {
                 console.log(res);
+
+                localStorage.setItem(
+                    'userItem', 
+                    JSON.stringify({
+                        auth: true,
+                        admin: res.data.admin
+                    })
+                );
+
+                onChangeAuth(true, res.data.admin);
+
+                history.push({
+                    pathname: '/'
+                })
             })
             .catch(err => {
                 console.log(err);

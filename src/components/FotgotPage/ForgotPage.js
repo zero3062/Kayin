@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import * as ForgotPageStyle from '../../assets/styles/FotgotPage/ForgotPage';
 
@@ -8,18 +9,23 @@ import { setSign } from '../../actions/Sign';
 import axios from 'axios';
 
 const ForgotPage = ({ userId, userPw, onChangeSign }) => {
+    let history = useHistory();
 
     useEffect(() => {
         onChangeSign('', '');
     }, [onChangeSign])
 
     const handleForgot = () => {
-        axios.post(`http://10.156.145.178:8080/user/forgot`, {
+        axios.post(`http://192.168.25.50:8080/user/forgot`, {
             id: userId,
             pw: userPw
         })
         .then(res => {
             console.log(res);
+
+            history.push({
+                pathname: '/signin'
+            });
         })
         .catch(err => {
             console.log(err);
