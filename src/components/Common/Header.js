@@ -26,7 +26,7 @@ const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
     return (
         <HeaderStyle.Container>
             <HeaderStyle.Contents>
-                <HeaderStyle.Logo onClick={() => {onChangeOption(0);history.push('/');}}>Kayin</HeaderStyle.Logo>
+                <HeaderStyle.Logo onClick={() => {onChangeOption(0);history.push('/');}}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
                 <HeaderStyle.Menu>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(1) : alert("메뉴 접근 관한이 없습니다")}>Notice</HeaderStyle.MenuItem>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(2) : alert("메뉴 접근 관한이 없습니다")}>Work</HeaderStyle.MenuItem>

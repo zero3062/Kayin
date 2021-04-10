@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import * as AppStyle from './assets/styles/App';
 import Header from './components/Common/Header';
-import { Main, SignIn, SignUp, Forgot } from './pages/index';
+import { Main, SignIn, SignUp, Forgot, Admin } from './pages/index';
 
 const App = () => {
     return (
@@ -17,6 +17,7 @@ const App = () => {
                     <Route path="/signin" component={SignIn}/>
                     <Route path="/signup" component={SignUp}/>
                     <Route path="/forgot" component={Forgot}/> 
+                    <Route path="/admin" component={Admin}/>
                 </Switch>
             </AppStyle.Container>
         </BrowserRouter>

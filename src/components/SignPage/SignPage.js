@@ -51,7 +51,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 onChangeAuth(true, res.data.admin);
 
                 history.push({
-                    pathname: '/'
+                    pathname: res.data.admin ? '/admin' : '/'
                 })
             })
             .catch(err => {
