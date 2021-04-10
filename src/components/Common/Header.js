@@ -1,18 +1,30 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import * as HeaderStyle from '../../assets/styles/Common/Header';
+import menubarImg from '../../assets/images/menubar.png';
+import crossImg from '../../assets/images/cross.png';
 
 import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
-import { setHeader } from '../../actions/Header';
+import { setHeader, setMenubar } from '../../actions/Header';
 
-const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
+const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, onChangeMenuBar }) => {
     let history = useHistory();
 
     const local = localStorage.getItem('userItem');
 
     if(local) {
         onChangeAuth(true, JSON.parse(local).admin);
+    }
+
+    const handleMenuSelect = (num) => {
+        if(auth) {
+            onChangeOption(num);
+            onChangeMenuBar(false);
+        } else {
+            alert("메뉴 접근 관한이 없습니다");
+            onChangeMenuBar(false);
+        }
     }
 
     const handleSignOut = () => {
@@ -25,18 +37,32 @@ const Header = ({ auth, admin, option, onChangeAuth, onChangeOption }) => {
     }
 
     return (
-        <HeaderStyle.Container>
+        <HeaderStyle.Container menubar={menubar}>
             <HeaderStyle.Contents>
-                <HeaderStyle.Logo onClick={() => {onChangeOption(0);history.push('/');}}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
+                <HeaderStyle.Logo onClick={() => {onChangeOption(0);onChangeMenuBar(false);history.push('/');}}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
                 <HeaderStyle.Menu>
-                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(1) : alert("메뉴 접근 관한이 없습니다")}>Notice</HeaderStyle.MenuItem>
-                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => auth ? onChangeOption(2) : alert("메뉴 접근 관한이 없습니다")}>Work</HeaderStyle.MenuItem>
+                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleMenuSelect(1)}>Notice</HeaderStyle.MenuItem>
+                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.MenuItem>
                     { auth ?
                         <HeaderStyle.MenuItem onClick={() => handleSignOut()}>Sign Out</HeaderStyle.MenuItem>
                     :
                         <HeaderStyle.MenuItem onClick={() => {onChangeOption(0);history.push('/signin')}}>Sign In</HeaderStyle.MenuItem>
                     }
+                    {   menubar ?
+                        <HeaderStyle.MenuBarIcon  onClick={() => onChangeMenuBar(false)} src={crossImg}/>
+                        :
+                        <HeaderStyle.MenuBarIcon  onClick={() => onChangeMenuBar(true)} src={menubarImg}/>
+                    }
                 </HeaderStyle.Menu>
+                <HeaderStyle.SubMenu menubar={menubar}>
+                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleMenuSelect(1)}>Notice</HeaderStyle.SubMenuItem>
+                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.SubMenuItem>
+                    { auth ?
+                        <HeaderStyle.SubMenuItem onClick={() => {onChangeMenuBar(false);handleSignOut()}}>Sign Out</HeaderStyle.SubMenuItem>
+                    :
+                        <HeaderStyle.SubMenuItem onClick={() => {onChangeOption(0);onChangeMenuBar(false);history.push('/signin')}}>Sign In</HeaderStyle.SubMenuItem>
+                    }
+                </HeaderStyle.SubMenu>
             </HeaderStyle.Contents>
         </HeaderStyle.Container>
     )
@@ -46,14 +72,16 @@ let mapStateToProps = (state) => {
     return {
         auth: state.auth.auth,
         admin: state.auth.admin,
-        option: state.header.option
+        option: state.header.option,
+        menubar: state.header.menubar
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
         onChangeAuth: (auth, admin) => dispatch(setAuth(auth, admin)),
-        onChangeOption: (option) => dispatch(setHeader(option))
+        onChangeOption: (option) => dispatch(setHeader(option)),
+        onChangeMenuBar: (menubar) => dispatch(setMenubar(menubar))
     }
 }
 

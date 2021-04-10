@@ -7,4 +7,5 @@ export const Container = styled.div`
 export const Header = styled.div`
     position:fixed;
     width: 100vw;
+    z-index: 1;
 `;
