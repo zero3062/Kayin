@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useHistory, useLocation } from "react-router-dom";
 import * as HeaderStyle from '../../assets/styles/Common/Header';
 import menubarImg from '../../assets/images/menubar.png';
 import crossImg from '../../assets/images/cross.png';
@@ -10,6 +10,16 @@ import { setHeader, setMenubar } from '../../actions/Header';
 
 const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, onChangeMenuBar }) => {
     let history = useHistory();
+    let location = useLocation();
+
+    useEffect(() => {
+        console.log(location.pathname);
+        if(location.pathname == "/notice") {
+            onChangeOption(1);
+        } else {
+            onChangeOption(0);
+        }
+    }, [])
 
     const local = localStorage.getItem('userItem');
 
@@ -41,7 +51,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
             <HeaderStyle.Contents>
                 <HeaderStyle.Logo onClick={() => {onChangeOption(0);onChangeMenuBar(false);history.push('/');}}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
                 <HeaderStyle.Menu>
-                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleMenuSelect(1)}>Notice</HeaderStyle.MenuItem>
+                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => {handleMenuSelect(1);history.push('/notice');}}>Notice</HeaderStyle.MenuItem>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.MenuItem>
                     { auth ?
                         <HeaderStyle.MenuItem onClick={() => handleSignOut()}>Sign Out</HeaderStyle.MenuItem>
@@ -55,7 +65,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
                     }
                 </HeaderStyle.Menu>
                 <HeaderStyle.SubMenu menubar={menubar}>
-                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleMenuSelect(1)}>Notice</HeaderStyle.SubMenuItem>
+                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => {handleMenuSelect(1);history.push('/notice');}}>Notice</HeaderStyle.SubMenuItem>
                     <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.SubMenuItem>
                     { auth ?
                         <HeaderStyle.SubMenuItem onClick={() => {onChangeMenuBar(false);handleSignOut()}}>Sign Out</HeaderStyle.SubMenuItem>

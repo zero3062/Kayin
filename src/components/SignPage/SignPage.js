@@ -19,7 +19,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
     const handleSign = () => {
 
         if(signOption === "Up") {
-            axios.post(`http://192.168.25.50:8080/user/signup`, {
+            axios.post(`http://10.156.145.178:8080/user/signup`, {
                 id: userId,
                 pw: userPw
             })
@@ -33,7 +33,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 console.log(err);
             })
         } else {
-            axios.post(`http://192.168.25.50:8080/user/signin`, {
+            axios.post(`http://10.156.145.178:8080/user/signin`, {
                 id: userId,
                 pw: userPw
             })

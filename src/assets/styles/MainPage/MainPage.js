@@ -19,7 +19,7 @@ export const Container = styled.div`
 
 export const Contents = styled.div`
     color: white;
-    width: 60vw;
+    width: 85vw;
     position: absolute;
     left: 8vw;
     top: 50%;
