@@ -64,32 +64,27 @@ export const PaginationStyle = styled.div`
     left: 50%;
     bottom: 15px;
     transform: translateX(-50%);
-    width: 84vw;
     height: 8vh;
 `;
 
 export const pageOptionBtn = styled.div`
     padding:5px;
     width:25px;
-    float: left;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     color: white;
+    position: absolute;
+    top: 0px;
 
-    &:first-child {
-        left: 5vw;
-
+    &:first-child{
+        margin-left: -60px;
     }
 
-    &:last-child {
-        right: 5vw;
+    &:last-child{
+        margin-left: ${props => props.num * 28 + 23 }px;
     }
-    
 `;
 
 export const pageBtn = styled.div`
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
 `;

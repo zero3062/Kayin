@@ -145,6 +145,13 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
         pageNumbers.push(i);
     }
 
+    let num = 0;
+    pageNumbers.map(number => {
+        if(number < maxPageNumLimit+1 && number > minPageNumLimit){
+        num++;
+        }
+    })
+
     const handlePrevBtn = () => {
         if(currentPage != pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
@@ -188,7 +195,7 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}
                     />
-                    <NoticePageStyle.pageOptionBtn onClick={handleNextBtn}>
+                    <NoticePageStyle.pageOptionBtn num={num} onClick={handleNextBtn}>
                         <NoticePageStyle.pageBtn>▷</NoticePageStyle.pageBtn>
                     </NoticePageStyle.pageOptionBtn>
                 </NoticePageStyle.PaginationStyle>
