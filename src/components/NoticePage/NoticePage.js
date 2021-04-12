@@ -4,9 +4,9 @@ import Pagination from '../Common/Pagination';
 import * as NoticePageStyle from '../../assets/styles/NoticePage/NoticePage';
 
 import { connect } from 'react-redux';
-import { setCurrentPage, setPost } from '../../actions/Post';
+import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPost } from '../../actions/Post';
 
-const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChangeCurrentpage}) => {
+const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit}) => {
     const notice = [
         {id: 1, title: 'asdf', date: '2020-04-02'},
         {id: 2, title: 'asdf', date: '2020-04-02'},
@@ -18,137 +18,29 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
         {id: 8, title: 'asdf', date: '2020-04-02'},
         {id: 9, title: 'asdf', date: '2020-04-02'},
         {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-        {id: 1, title: 'asdf', date: '2020-04-02'},
-        {id: 2, title: 'asdf', date: '2020-04-02'},
-        {id: 3, title: 'asdf', date: '2020-04-02'},
-        {id: 4, title: 'asdf', date: '2020-04-02'},
-        {id: 5, title: 'asdf', date: '2020-04-02'},
-        {id: 6, title: 'asdf', date: '2020-04-02'},
-        {id: 7, title: 'asdf', date: '2020-04-02'},
-        {id: 8, title: 'asdf', date: '2020-04-02'},
-        {id: 9, title: 'asdf', date: '2020-04-02'},
-        {id: 10, title: 'asdf', date: '2020-04-02'},
-    ];
+        {id: 11, title: 'zxcv', date: '2020-04-02'},
+        {id: 12, title: 'zxcv', date: '2020-04-02'},
+        {id: 13, title: 'zxcv', date: '2020-04-02'},
+        {id: 14, title: 'zxcv', date: '2020-04-02'},
+        {id: 15, title: 'zxcv', date: '2020-04-02'},
+        {id: 16, title: 'zxcv', date: '2020-04-02'},
+        {id: 17, title: 'zxcv', date: '2020-04-02'},
+        {id: 18, title: 'zxcv', date: '2020-04-02'},
+        {id: 19, title: 'zxcv', date: '2020-04-02'},
+        {id: 20, title: 'zxcv', date: '2020-04-02'},
+        {id: 21, title: 'qwer', date: '2020-04-02'},
 
-    const [pageNumLimit, setPageNumLimit] = useState(10),
-          [maxPageNumLimit, setMaxPageNumLimit] = useState(10),
-          [minPageNumLimit, setMinPageNumLimit] = useState(0);
+    ];
 
     useEffect(() => {
         onChangePost(notice);
         onChangeCurrentpage(1);
     },[])
 
-    const pageNumbers = [];
-
-    for (let i = 1; i <= Math.ceil(everyPost.length/10); i++) {
-        pageNumbers.push(i);
-    }
-
     let num = 0;
     pageNumbers.map(number => {
         if(number < maxPageNumLimit+1 && number > minPageNumLimit){
-        num++;
+            num++;
         }
     })
 
@@ -156,9 +48,9 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
         if(currentPage != pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
 
-            if((currentPage - 1)%pageNumLimit==0) {
-                setMaxPageNumLimit(maxPageNumLimit - pageNumLimit);
-                setMinPageNumLimit(minPageNumLimit - pageNumLimit);
+            if((currentPage - 1)%10==0) {
+                onChangeMaxPageNumLimit(maxPageNumLimit - 10);
+                onChangeMinPageNumLimit(minPageNumLimit - 10);
             }
         }
     }
@@ -168,8 +60,8 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
             onChangeCurrentpage(currentPage + 1);
 
             if(currentPage+1> maxPageNumLimit) {
-                setMaxPageNumLimit(maxPageNumLimit + pageNumLimit);
-                setMinPageNumLimit(minPageNumLimit + pageNumLimit);
+                onChangeMaxPageNumLimit(maxPageNumLimit + 10);
+                onChangeMinPageNumLimit(minPageNumLimit + 10);
             }
         }
     }
@@ -206,16 +98,20 @@ const NoticePage = ({ everyPost, currentPage, currentPosts, onChangePost, onChan
 
 let mapStateToProps = (state) => {
     return {
-        everyPost: state.post.everyPost,
+        pageNumbers: state.post.pageNumbers,
         currentPage: state.post.currentPage,
-        currentPosts: state.post.currentPosts
+        currentPosts: state.post.currentPosts,
+        maxPageNumLimit: state.post.maxPageNumLimit,
+        minPageNumLimit: state.post.minPageNumLimit
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
         onChangePost: (post) => dispatch(setPost(post)),
-        onChangeCurrentpage: (currentPage) => dispatch(setCurrentPage(currentPage))
+        onChangeCurrentpage: (currentPage) => dispatch(setCurrentPage(currentPage)),
+        onChangeMaxPageNumLimit: (maxPageNumLimit) => dispatch(setMaxPageNumLimit(maxPageNumLimit)),
+        onChangeMinPageNumLimit: (minPageNumLimit) => dispatch(setMinPageNumLimit(minPageNumLimit))
     }
 }
 

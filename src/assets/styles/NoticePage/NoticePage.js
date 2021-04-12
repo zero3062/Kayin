@@ -73,6 +73,7 @@ export const pageOptionBtn = styled.div`
     color: white;
     position: absolute;
     top: 0px;
+    cursor: pointer;
 
     &:first-child{
         margin-left: -60px;
