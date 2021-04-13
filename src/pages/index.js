@@ -4,3 +4,4 @@ export { default as SignUp } from './SignUp';
 export { default as Forgot } from './Forgot';
 export { default as Admin } from './Admin';
 export { default as Notice } from './Notice';
+export { default as NoticeView } from './NoticeView';

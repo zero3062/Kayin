@@ -7,4 +7,6 @@ var jsonParser = bodyParser.json()
  
 router.get('/', jsonParser, ctrl.get_notice);
 
+router.get('/:id', jsonParser, ctrl.get_noticeContent);
+
 module.exports = router;

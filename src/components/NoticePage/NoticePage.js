@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 import NoticeList from './NoticeList/NoticeList';
 import Pagination from '../Common/Pagination';
 import * as NoticePageStyle from '../../assets/styles/NoticePage/NoticePage';
@@ -9,6 +10,7 @@ import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPost } from 
 import axios from 'axios';
 
 const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit}) => {
+    let history = useHistory();
 
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/notice/`,{})
@@ -52,6 +54,12 @@ const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, m
         }
     }
 
+    const handleNoticeNum = (num) => {
+        history.push({
+            pathname: `/notice/${num}`
+        })
+    }
+
     return(
         <NoticePageStyle.Container>
             <NoticePageStyle.Contents>
@@ -59,7 +67,7 @@ const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, m
                     <NoticePageStyle.NoticeHeader>Notice</NoticePageStyle.NoticeHeader>
                     <NoticePageStyle.UnderBar/>
                     <NoticePageStyle.List>
-                        <NoticeList lists={currentPosts}/>
+                        <NoticeList lists={currentPosts} handleNoticeNum={handleNoticeNum}/>
                     </NoticePageStyle.List>
                 </NoticePageStyle.ListViewer>
                 <NoticePageStyle.PaginationStyle>
