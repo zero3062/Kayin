@@ -14,7 +14,7 @@ const post = (state=postIntialState, action) => {
         case SET_POST:
             return Object.assign({}, state, {
                 everyPost: action.everyPost,
-                pageNumbers: [...action.everyPost.keys()].filter(e=>e%10==0).map(e=> e/10+1)
+                pageNumbers: [...action.everyPost.keys()].filter(e=>e%10===0).map(e=> e/10+1)
             })
         case SET_CURRENTPAGE:
             return Object.assign({}, state, {

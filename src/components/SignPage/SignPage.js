@@ -20,8 +20,8 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
 
         if(signOption === "Up") {
             axios.post(`http://10.156.145.178:8080/user/signup`, {
-                id: userId,
-                pw: userPw
+                user_id: userId,
+                password: userPw
             })
             .then(res => {
                 console.log(res);
@@ -34,8 +34,8 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
             })
         } else {
             axios.post(`http://10.156.145.178:8080/user/signin`, {
-                id: userId,
-                pw: userPw
+                user_id: userId,
+                password: userPw
             })
             .then(res => {
                 console.log(res);

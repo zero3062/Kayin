@@ -14,12 +14,12 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
 
     useEffect(() => {
         console.log(location.pathname);
-        if(location.pathname == "/notice") {
+        if(location.pathname === "/notice") {
             onChangeOption(1);
         } else {
             onChangeOption(0);
         }
-    }, [])
+    }, [location.pathname, onChangeOption])
 
     const local = localStorage.getItem('userItem');
 

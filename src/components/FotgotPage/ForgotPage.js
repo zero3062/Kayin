@@ -17,8 +17,8 @@ const ForgotPage = ({ userId, userPw, onChangeSign }) => {
 
     const handleForgot = () => {
         axios.post(`http://10.156.145.178:8080/user/forgot`, {
-            id: userId,
-            pw: userPw
+            user_id: userId,
+            password: userPw
         })
         .then(res => {
             console.log(res);
