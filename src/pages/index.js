@@ -6,3 +6,4 @@ export { default as Admin } from './Admin';
 export { default as Notice } from './Notice';
 export { default as NoticeView } from './NoticeView';
 export { default as Work } from './Work';
+export { default as WorkWrite } from './WorkWrite';

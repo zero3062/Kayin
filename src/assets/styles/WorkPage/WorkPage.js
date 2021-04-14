@@ -40,6 +40,20 @@ export const WorkHeader = styled.div`
     top: 10px;
 `;
 
+export const Create = styled.input`
+    position: absolute;
+    top: 10px;
+    right: 2vw;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 25px;
+    padding: 13px 25px;
+    cursor: pointer;
+    outline: none;
+
+`;
+
 export const UnderBar = styled.div`
     width: 80vw;
     height: 3px;
