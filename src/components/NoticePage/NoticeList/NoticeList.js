@@ -5,7 +5,7 @@ const NoticeList = ({ lists, handleNoticeNum }) => {
     const noticeItem = lists.map(
         list => (
             <NoticeItem
-                id={list.post_id}
+                id={list.notice_id}
                 title={list.title}
                 date={list.date}
                 handleNoticeNum={handleNoticeNum}

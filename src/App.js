@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import * as AppStyle from './assets/styles/App';
 import Header from './components/Common/Header';
-import { Main, SignIn, SignUp, Forgot, Admin, Notice,NoticeView } from './pages/index';
+import { Main, SignIn, SignUp, Forgot, Admin, Notice, NoticeView, Work } from './pages/index';
 
 const App = () => {
     return (
@@ -20,6 +20,7 @@ const App = () => {
                     <Route path="/admin" component={Admin}/>
                     <Route path="/notice" exact component={Notice}/>
                     <Route path="/notice/:id" component={NoticeView}/>
+                    <Route path="/work" exact component={Work}/>
                 </Switch>
             </AppStyle.Container>
         </BrowserRouter>

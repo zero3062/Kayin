@@ -1,9 +1,9 @@
+const { useLayoutEffect } = require('react');
 const getConnection = require('../../models');
 
 exports.post_signup = ( req, res ) => {
 
     getConnection((connection) => {
-
         connection.query(`insert ignore into user (user_id, password, admin) values('${req.body.user_id}', '${req.body.password}', false);`, function(err, rows) {
             if(err) {
                 console.log({message: 'user is exist so insert failed'});

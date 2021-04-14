@@ -1,7 +1,15 @@
+export const SET_PAGENUMLIMIT = 'SET_PAGENUMLIMIT';
 export const SET_POST = 'SET_POST';
 export const SET_CURRENTPAGE = 'SET_CURRENTPAGE';
 export const SET_MAXPAGENUMLIMIT = 'SET_MAXPAGENUMLIMIT';
 export const SET_MINPAGENUMLIMIT = 'SET_MINPAGENUMLIMIT'
+
+export const setPageNumLimit = (pageNumLimit) => {
+    return {
+        type: SET_PAGENUMLIMIT,
+        pageNumLimit: pageNumLimit
+    }
+}
 
 export const setPost = (everyPost) => {
     return {

@@ -5,17 +5,18 @@ import Pagination from '../Common/Pagination';
 import * as NoticePageStyle from '../../assets/styles/NoticePage/NoticePage';
 
 import { connect } from 'react-redux';
-import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPost } from '../../actions/Post';
+import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPageNumLimit, setPost } from '../../actions/Post';
 
 import axios from 'axios';
 
-const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit}) => {
+const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
     let history = useHistory();
 
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/notice/`,{})
         .then(res => {
             console.log(res);
+            onChangePageNumLimit(10);
             onChangePost(res.data);
             onChangeCurrentpage(1);
         })
@@ -37,8 +38,8 @@ const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, m
             onChangeCurrentpage(currentPage - 1);
 
             if((currentPage - 1)%10===0) {
-                onChangeMaxPageNumLimit(maxPageNumLimit - 10);
-                onChangeMinPageNumLimit(minPageNumLimit - 10);
+                onChangeMaxPageNumLimit(maxPageNumLimit - pageNumLimit);
+                onChangeMinPageNumLimit(minPageNumLimit - pageNumLimit);
             }
         }
     }
@@ -48,8 +49,8 @@ const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, m
             onChangeCurrentpage(currentPage + 1);
 
             if(currentPage+1> maxPageNumLimit) {
-                onChangeMaxPageNumLimit(maxPageNumLimit + 10);
-                onChangeMinPageNumLimit(minPageNumLimit + 10);
+                onChangeMaxPageNumLimit(maxPageNumLimit + pageNumLimit);
+                onChangeMinPageNumLimit(minPageNumLimit + pageNumLimit);
             }
         }
     }
@@ -93,6 +94,7 @@ const NoticePage = ({ currentPage, currentPosts, pageNumbers, maxPageNumLimit, m
 let mapStateToProps = (state) => {
     return {
         pageNumbers: state.post.pageNumbers,
+        pageNumLimit: state.post.pageNumLimit,
         currentPage: state.post.currentPage,
         currentPosts: state.post.currentPosts,
         maxPageNumLimit: state.post.maxPageNumLimit,
@@ -102,6 +104,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
+        onChangePageNumLimit: (pageNumLimit) => dispatch(setPageNumLimit(pageNumLimit)),
         onChangePost: (post) => dispatch(setPost(post)),
         onChangeCurrentpage: (currentPage) => dispatch(setCurrentPage(currentPage)),
         onChangeMaxPageNumLimit: (maxPageNumLimit) => dispatch(setMaxPageNumLimit(maxPageNumLimit)),

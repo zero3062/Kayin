@@ -16,6 +16,8 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
         console.log(location.pathname);
         if(location.pathname.indexOf("notice") != -1) {
             onChangeOption(1);
+        } else if(location.pathname.indexOf("work") != -1 ){
+            onChangeOption(2);
         } else {
             onChangeOption(0);
         }
@@ -47,6 +49,19 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
         }
     }
 
+    const handleWork = () => {
+        if(auth) {
+            onChangeOption(2);
+            onChangeMenuBar(false);
+            history.push('/work');
+        } else {
+            alert("메뉴 접근 관한이 없습니다");
+            onChangeMenuBar(false);
+            history.push({pathname: '/'})
+        }
+    }
+
+
     const handleMenuSelect = (num) => {
         if(auth) {
             onChangeOption(num);
@@ -75,7 +90,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
                 <HeaderStyle.Logo onClick={() => handleMain()}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
                 <HeaderStyle.Menu>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleNotice()}>Notice</HeaderStyle.MenuItem>
-                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.MenuItem>
+                    <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleWork()}>Work</HeaderStyle.MenuItem>
                     { auth ?
                         <HeaderStyle.MenuItem onClick={() => handleSignOut()}>Sign Out</HeaderStyle.MenuItem>
                     :
@@ -89,7 +104,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
                 </HeaderStyle.Menu>
                 <HeaderStyle.SubMenu menubar={menubar}>
                     <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleNotice()}>Notice</HeaderStyle.SubMenuItem>
-                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleMenuSelect(2)}>Work</HeaderStyle.SubMenuItem>
+                    <HeaderStyle.SubMenuItem display={admin} option={option} onClick={() => handleWork()}>Work</HeaderStyle.SubMenuItem>
                     { auth ?
                         <HeaderStyle.SubMenuItem onClick={() => {onChangeMenuBar(false);handleSignOut()}}>Sign Out</HeaderStyle.SubMenuItem>
                     :
