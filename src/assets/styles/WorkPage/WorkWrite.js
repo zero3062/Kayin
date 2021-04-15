@@ -157,7 +157,7 @@ export const TextArea = styled.textarea`
 
 export const FileName = styled.input`
     display: inline-block; 
-    padding: 7.5px 15px;
+    padding: 7.5px 12px;
     font-size: 20px; 
     line-height: normal; 
     vertical-align: middle; 

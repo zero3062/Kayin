@@ -5,6 +5,7 @@ const fileUpload = require('express-fileupload');
 
 app.use(cors());
 app.use(fileUpload());
+app.use( '/images', express.static('./server/images'));
 
 app.use(require('./controllers'));
 

@@ -5,10 +5,10 @@ const WorkList = ({ lists, handleWorkNum }) => {
     const workItem = lists.map(
         list => (
             <WorkItem
-                id={list.post_id}
+                id={list.work_id}
                 title={list.title}
                 description={list.description}
-                sampleImg={list.img}
+                sampleImg={list.image_file}
                 handleWorkNum={handleWorkNum}
             />
         )

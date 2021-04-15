@@ -7,19 +7,25 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { setImageInfo, setText } from '../../actions/Write';
 
-const WorkWritePage = ({ title, description, onChangeText, onChangeImageInfo}) => {
+const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeImageInfo}) => {
     let history = useHistory();
 
     const [fileName, setFileName] = useState('file name...');
-
+    
     const handleWrite = () => {
-        axios.post(`http://10.156.145.178:8080/work/create`,{
-            title: title,
-            description: description,
-            image_file: title
+        var formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("photo", image_info);
+
+        axios.post(`http://10.156.145.178:8080/work/create`,formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
         .then(res => {
             console.log(res);
+            history.push('/work')
         })
         .catch(err => {
             console.log(err);
@@ -32,9 +38,12 @@ const WorkWritePage = ({ title, description, onChangeText, onChangeImageInfo}) =
 
     const handleFileChange = (e) => {
         console.log(e.target.files);
-        onChangeImageInfo(e.target);
+        onChangeImageInfo(e.target.files[0]);
         setFileName(e.target.files[0].name);
     }
+
+    console.log(image_info.files);
+
     
     return(
         <WorkWritePageStyle.Container>
@@ -48,7 +57,7 @@ const WorkWritePage = ({ title, description, onChangeText, onChangeImageInfo}) =
                     <WorkWritePageStyle.UnderBar/>
                     <WorkWritePageStyle.FileName value={fileName} disabled="disabled"></WorkWritePageStyle.FileName>
                     <WorkWritePageStyle.FileLabel for="upload_file">Upload</WorkWritePageStyle.FileLabel>
-                    <WorkWritePageStyle.FileInput type="file" id="upload_file" onChange={(e) => handleFileChange(e)}></WorkWritePageStyle.FileInput>
+                    <WorkWritePageStyle.FileInput type="file" id="upload_file" accept="image/*" onChange={(e) => handleFileChange(e)}></WorkWritePageStyle.FileInput>
                 </WorkWritePageStyle.ListViewer>
             </WorkWritePageStyle.Contents>
         </WorkWritePageStyle.Container>
@@ -59,6 +68,7 @@ let mapStateToProps = (state) => {
     return {
         title: state.write.title,
         description: state.write.description,
+        image_info: state.write. image_info
     }
 }
 

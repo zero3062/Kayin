@@ -57,10 +57,12 @@ export const Description = styled.div`
     }
 `;
 
-export const ImageTag = styled.img`
+export const Image = styled.div`
     width: 110px;
-    height: auto;
+    height: 68px;
     position: absolute;
     top: 10px;
     right: 2vw;
+    background-image: url(${props => props.src});
+    background-size: cover;   
 `;
