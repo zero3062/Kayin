@@ -32,7 +32,7 @@ export const ListViewer = styled.div`
     height: 78vh;
 `;
 
-export const NoticeHeader = styled.div`
+export const WorkHeader = styled.div`
     color: white;
     width: 80vw;
     font-size: 35px;
@@ -43,10 +43,19 @@ export const NoticeHeader = styled.div`
     word-break: break-all;
 `;
 
-export const DateView = styled.div`
+export const Information = styled.div`
     position: absolute;
+    top: 5px;
     right: 2vw;
     color: white;
+    line-height: 40px;
+
+`;
+
+export const DateView = styled.div`
+`;
+
+export const UserId = styled.div`
 `;
 
 export const UnderBar = styled.div`
@@ -59,11 +68,24 @@ export const UnderBar = styled.div`
     background: white;
 `;
 
-export const List = styled.div`
-    width: 75vw;
+export const MainContents = styled.div`
     position: relative;
     top: 6vh;
     left: 50%;
     transform: translateX(-50%);
+    height: 500px;
+    width: 75vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
+`;
+
+export const Description = styled.div`
     color: white;
+`;
+
+export const ImageFile = styled.img`
+    width: 50vw;
+    height: auto;
+    position: relative;
+    top: 10vh;
 `;
