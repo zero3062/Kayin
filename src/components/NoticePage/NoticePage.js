@@ -13,7 +13,7 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
     let history = useHistory();
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/notice/`,{})
+        axios.get(`http://175.116.111.233:8080/notice/`,{})
         .then(res => {
             console.log(res);
             onChangePageNumLimit(10);
@@ -77,7 +77,7 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
                     </NoticePageStyle.pageOptionBtn>
                     <Pagination
                         currentPage={currentPage}
-                        paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}    
+                        paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
                         pageNumbers={pageNumbers}
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}

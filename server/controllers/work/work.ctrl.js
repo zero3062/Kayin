@@ -35,7 +35,7 @@ exports.post_work = (req, res) => {
             if (err)
                 return res.status(500).send(err);
 
-            connection.query(`insert ignore into work (title, description, image_file) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${img_name}');`, function(err, rows) {
+            connection.query(`insert ignore into work (title, description, image_file) values('${req.body.title}', '${req.body.description}' , 'http://175.116.111.233:8080/images/${img_name}');`, function(err, rows) {
                 if(err) {
                     console.log({message: 'work is exist so insert failed'});
                     res.status(404).send({message: 'work is exist so insert failed'});

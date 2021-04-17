@@ -19,7 +19,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
     const handleSign = () => {
 
         if(signOption === "Up") {
-            axios.post(`http://10.156.145.178:8080/user/signup`, {
+            axios.post(`http://175.116.111.233:8080/user/signup`, {
                 user_id: userId,
                 password: userPw
             })
@@ -33,7 +33,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 console.log(err);
             })
         } else {
-            axios.post(`http://10.156.145.178:8080/user/signin`, {
+            axios.post(`http://175.116.111.233:8080/user/signin`, {
                 user_id: userId,
                 password: userPw
             })
@@ -41,7 +41,7 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 console.log(res);
 
                 localStorage.setItem(
-                    'userItem', 
+                    'userItem',
                     JSON.stringify({
                         auth: true,
                         admin: res.data.admin

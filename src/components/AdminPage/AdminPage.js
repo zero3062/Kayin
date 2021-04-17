@@ -23,8 +23,7 @@ const AdminPage = ({onChangeAuth}) => {
     return (
         <AdminPageStyle.Container>
             <AdminPageStyle.Contents>
-                <AdminPageStyle.HeadContent>"My Punishment is more than I can bear."</AdminPageStyle.HeadContent>
-                <AdminPageStyle.SubContent>- by Genesis 4:14</AdminPageStyle.SubContent>
+
             </AdminPageStyle.Contents>
         </AdminPageStyle.Container>
     )

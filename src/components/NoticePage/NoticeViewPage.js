@@ -12,7 +12,7 @@ const NoticeViewPage = ({ title, description, date, onChangeNotice}) => {
     let {id} = useParams();
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/notice/${id}`,{})
+        axios.get(`http://175.116.111.233:8080/notice/${id}`,{})
         .then(res => {
             console.log(res);
             onChangeNotice(res.data.title, res.data.description, res.data.date);

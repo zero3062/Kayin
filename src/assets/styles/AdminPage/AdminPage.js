@@ -24,11 +24,3 @@ export const Contents = styled.div`
     top: 50%;
     transfomr: transX(-50%);
 `;
-
-export const HeadContent = styled.div`
-    font-size: 40px;
-`;
-
-export const SubContent = styled.div`
-    font-size: 30px;
-`;
