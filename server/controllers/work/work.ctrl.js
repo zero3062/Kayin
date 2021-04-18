@@ -34,8 +34,11 @@ exports.post_work = (req, res) => {
         file.mv('./server/images/'+img_name, function(err) {
             if (err)
                 return res.status(500).send(err);
+            
+            const regex = /\s/gm;
+            var replace_img = img_name.replace(regex, '%20');
 
-            connection.query(`insert ignore into work (title, description, image_file) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${img_name}');`, function(err, rows) {
+            connection.query(`insert ignore into work (title, description, image_file) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${replace_img}');`, function(err, rows) {
                 if(err) {
                     console.log({message: 'work is exist so insert failed'});
                     res.status(404).send({message: 'work is exist so insert failed'});
