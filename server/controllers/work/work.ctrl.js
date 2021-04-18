@@ -34,6 +34,9 @@ exports.post_work = (req, res) => {
         file.mv('./server/images/'+img_name, function(err) {
             if (err)
                 return res.status(500).send(err);
+            
+            const regex = /\s/gm;
+            var replace_img = img_name.replace(regex, '%20');
 
             const regex = /\s/gm;
             const sample_name = img_name.replace(regex, '%20');
