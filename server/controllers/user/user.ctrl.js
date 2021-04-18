@@ -33,7 +33,7 @@ exports.post_signin = (req, res) => {
                     }
                 } else {
                     console.log({message: 'password is not correct'});
-                    res.status(404).send({message: 'password is not correct'}); 
+                    res.status(404).send({message: 'password is not correct'});
                 }
             } else {
                 console.log({message: 'user_id is not exist'});
@@ -57,7 +57,7 @@ exports.post_forgot = (req, res) => {
                 console.log({message: 'user_id is not exist'});
                 res.status(404).send({message: 'user_id is not exist'});
             }
-        }) 
+        })
 
         connection.release();
     })

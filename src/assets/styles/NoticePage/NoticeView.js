@@ -45,6 +45,7 @@ export const NoticeHeader = styled.div`
 
 export const DateView = styled.div`
     position: absolute;
+    top: 30px;
     right: 2vw;
     color: white;
 `;
@@ -53,7 +54,7 @@ export const UnderBar = styled.div`
     width: 80vw;
     height: 3px;
     position: relative;
-    top: 4vh;
+    top: 2vh;
     left: 50%;
     transform: translateX(-50%);
     background: white;

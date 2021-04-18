@@ -23,7 +23,7 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
     // ]
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/work`, {})
+        axios.get(`http://175.116.111.233:8080/work`, {})
         .then(res => {
             console.log(res);
             onChangePageNumLimit(4);
@@ -86,7 +86,7 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
                     </WorkPageStyle.pageOptionBtn>
                     <Pagination
                         currentPage={currentPage}
-                        paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}    
+                        paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
                         pageNumbers={pageNumbers}
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}

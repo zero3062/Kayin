@@ -7,3 +7,4 @@ export { default as Notice } from './Notice';
 export { default as NoticeView } from './NoticeView';
 export { default as Work } from './Work';
 export { default as WorkWrite } from './WorkWrite';
+export { default as WorkView } from './WorkView';

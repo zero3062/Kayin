@@ -11,14 +11,14 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
     let history = useHistory();
 
     const [fileName, setFileName] = useState('file name...');
-    
+
     const handleWrite = () => {
         var formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
         formData.append("photo", image_info);
 
-        axios.post(`http://10.156.145.178:8080/work/create`,formData, {
+        axios.post(`http://175.116.111.233:8080/work/create`,formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -44,7 +44,7 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
 
     console.log(image_info.files);
 
-    
+
     return(
         <WorkWritePageStyle.Container>
             <WorkWritePageStyle.Contents>
