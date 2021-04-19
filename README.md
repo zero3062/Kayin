@@ -35,3 +35,13 @@ npm install --save body-parser
 npm install express-fileupload
 
 npm install jsonwebtoken
+
+# Mysql
+
+## User table
+|Field|Type|Null|Key|Default|Extra|
+|---|---|---|---|---|---|
+|user_id|int|NO|PRI|NULL|auto_increment|
+|id|varchar(50)|YES||NULL||
+|password|varchar(50)|Yes||NULL||
+|admin|tinyint(1)|Yes||NULL||
