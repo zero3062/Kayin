@@ -33,3 +33,5 @@ npm install nodemon
 npm install --save body-parser
 
 npm install express-fileupload
+
+npm install jsonwebtoken

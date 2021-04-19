@@ -6,6 +6,7 @@ import Header from './components/Common/Header';
 import { Main, SignIn, SignUp, Forgot, Admin, Notice, NoticeView, Work, WorkWrite, WorkView } from './pages/index';
 
 const App = () => {
+
     return (
         <BrowserRouter>
             <AppStyle.Container>
