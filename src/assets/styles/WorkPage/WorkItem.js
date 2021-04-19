@@ -63,6 +63,9 @@ export const Image = styled.div`
     position: absolute;
     top: 10px;
     right: 2vw;
-    background-image: url(${props => props.src});
-    background-size: cover;   
+    background: url(${props => props.src}) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 `;

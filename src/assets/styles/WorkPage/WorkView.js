@@ -73,7 +73,7 @@ export const MainContents = styled.div`
     top: 6vh;
     left: 50%;
     transform: translateX(-50%);
-    height: 500px;
+    height: 61vh;
     width: 75vw;
     overflow-x: hidden;
     overflow-y: scroll;

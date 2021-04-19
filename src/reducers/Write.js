@@ -4,7 +4,6 @@ const writeIntialState = {
     title: '',
     description: '',
     image_info: '',
-    image_name: ''
 }
 
 const write = (state=writeIntialState, action) => {
@@ -17,7 +16,6 @@ const write = (state=writeIntialState, action) => {
         case SET_IMAGEINFO:
             return Object.assign({}, state, {
                 image_info: action.image_info,
-                image_name: action.image_info.name
             })
         default:
             return state

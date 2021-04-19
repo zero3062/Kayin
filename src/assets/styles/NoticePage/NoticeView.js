@@ -34,13 +34,17 @@ export const ListViewer = styled.div`
 
 export const NoticeHeader = styled.div`
     color: white;
-    width: 80vw;
+    width: 70vw;
     font-size: 35px;
     position: relative;
     left: 2vw;
     top: 10px;
     margin-bottom: 15px;
     word-break: break-all;
+
+    @media screen and (max-width: 850px) {
+        width: 65vw;
+    }
 `;
 
 export const DateView = styled.div`
