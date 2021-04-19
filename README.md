@@ -44,7 +44,6 @@ npm install jsonwebtoken
 |user_id|int|NO|PRI|NULL|auto_increment|
 |id|varchar(50)|YES||NULL||
 |password|varchar(50)|Yes||NULL||
-<<<<<<< HEAD
 |admin|tinyint(1)|Yes||NULL||
 
 ## token table
@@ -70,6 +69,4 @@ npm install jsonwebtoken
 |image_file|varchar(200)|Yes||NULL||
 |user_id|varchar(100)|NO||NULL||
 |date|varchar(10)|NO||NULL||
-=======
 |admin|tinyint(1)|Yes||NULL||
->>>>>>> main
