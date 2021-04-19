@@ -45,3 +45,27 @@ npm install jsonwebtoken
 |id|varchar(50)|YES||NULL||
 |password|varchar(50)|Yes||NULL||
 |admin|tinyint(1)|Yes||NULL||
+
+## token table
+|Field|Type|Null|Key|Default|Extra|
+|---|---|---|---|---|---|
+|user_id|int|NO|PRI|NULL||
+|content|varchar(500)|YES||NULL||
+
+## notice table
+|Field|Type|Null|Key|Default|Extra|
+|---|---|---|---|---|---|
+|notice_id|int|NO|PRI|NULL|auto_increment|
+|title|varchar(200)|YES||NULL||
+|date|varchar(20)|Yes||NULL||
+|description|varchar(200)|Yes||NULL||
+
+## work table
+|Field|Type|Null|Key|Default|Extra|
+|---|---|---|---|---|---|
+|work_id|int|NO|PRI|NULL|auto_increment|
+|title|varchar(200)|YES||NULL||
+|description|varchar(200)|Yes||NULL||
+|image_file|varchar(200)|Yes||NULL||
+|user_id|varchar(100)|NO||NULL||
+|date|varchar(10)|NO||NULL||
