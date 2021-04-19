@@ -38,7 +38,7 @@ npm install jsonwebtoken
 
 # Mysql
 
-## User table
+## 1.User table
 |Field|Type|Null|Key|Default|Extra|
 |---|---|---|---|---|---|
 |user_id|int|NO|PRI|NULL|auto_increment|
@@ -46,13 +46,13 @@ npm install jsonwebtoken
 |password|varchar(50)|Yes||NULL||
 |admin|tinyint(1)|Yes||NULL||
 
-## token table
+## 2.token table
 |Field|Type|Null|Key|Default|Extra|
 |---|---|---|---|---|---|
 |user_id|int|NO|PRI|NULL||
 |content|varchar(500)|YES||NULL||
 
-## notice table
+## 3.notice table
 |Field|Type|Null|Key|Default|Extra|
 |---|---|---|---|---|---|
 |notice_id|int|NO|PRI|NULL|auto_increment|
@@ -60,7 +60,7 @@ npm install jsonwebtoken
 |date|varchar(20)|Yes||NULL||
 |description|varchar(200)|Yes||NULL||
 
-## work table
+## 4.work table
 |Field|Type|Null|Key|Default|Extra|
 |---|---|---|---|---|---|
 |work_id|int|NO|PRI|NULL|auto_increment|
