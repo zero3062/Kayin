@@ -36,9 +36,11 @@ npm install express-fileupload
 
 npm install jsonwebtoken
 
+npm install cookie-parser
+
 # Mysql
 
-## 1.User table
+## 1.user table
 |Field|Type|Null|Key|Default|Extra|
 |---|---|---|---|---|---|
 |user_id|int|NO|PRI|NULL|auto_increment|
@@ -69,4 +71,3 @@ npm install jsonwebtoken
 |image_file|varchar(200)|Yes||NULL||
 |user_id|varchar(100)|NO||NULL||
 |date|varchar(10)|NO||NULL||
-|admin|tinyint(1)|Yes||NULL||

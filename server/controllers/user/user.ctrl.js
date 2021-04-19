@@ -36,23 +36,23 @@ exports.post_signin = async(req, res) => {
                     });
 
                     connection.query(`select user_id from token where user_id = ${result[0].user_id}`, function(err, result2) {
-                        if(err) {
-                            connection.query(`replace into token (user_id, content) values(${result[0].user_id}, '${refreshToken}');`, function(err, result1) {
-                                if(err) {
-                                    console.log(err);
-                                }
-                            });
-                        } else {
-                            connection.query(`insert into token (user_id, content) values(${result[0].user_id}, '${refreshToken}');`, function(err, result1) {
-                                if(err) {
-                                    console.log(err);
-                                }
-                            });
+                        if(!err) {
+                            if(result2.length > 0) {
+                                connection.query(`replace into token (user_id, content) values(${result[0].user_id}, '${refreshToken}');`, function(err, result1) {
+                                    if(err) {
+                                            console.log(err);
+                                        }
+                                });
+                            } else {
+                                connection.query(`insert into token (user_id, content) values(${result[0].user_id}, '${refreshToken}');`, function(err, result1) {
+                                    if(err) {
+                                        console.log(err);
+                                    }
+                                });
+                            }
                         }
                     })
                     
-                    
-
                     const accessToken = jwt.sign({
                         id: req.body.user_id
                     },
@@ -63,14 +63,12 @@ exports.post_signin = async(req, res) => {
 
                     res.cookie('accessToken', accessToken);
                     res.cookie('refreshToken', refreshToken);
-                    res.json({
-                        accessToken : accessToken,
-                        refreshToken: refreshToken
-                    })
 
                     if(result[0].admin) {
                         res.status(200).send({admin: true});
-                    } 
+                    } else {
+                        res.status(200).send({admin: false});
+                    }
                 } else {
                     console.log({message: 'password is not correct'});
                     res.status(404).send({message: 'password is not correct'});
