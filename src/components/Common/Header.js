@@ -7,6 +7,7 @@ import crossImg from '../../assets/images/cross.png';
 import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
 import { setHeader, setMenubar } from '../../actions/Header';
+import axios from 'axios';
 
 const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, onChangeMenuBar }) => {
     let history = useHistory();
@@ -76,6 +77,8 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
 
     const handleSignOut = () => {
         localStorage.removeItem('userItem');
+        localStorage.removeItem('Authentication');
+
         onChangeOption(0);
         onChangeAuth(false, false);
         history.push({

@@ -23,9 +23,12 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
         formData.append("description", description);
         formData.append("photo", image_info);
 
+        const local = localStorage.getItem('Authentication');
+
         axios.post(`http://10.156.145.178:8080/work/create`,formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'Authentication' : JSON.parse(local).accessToken
             }
         })
         .then(res => {
@@ -46,9 +49,6 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
         onChangeImageInfo(e.target.files[0]);
         setFileName(e.target.files[0].name);
     }
-
-    console.log(image_info.files);
-
 
     return(
         <WorkWritePageStyle.Container>

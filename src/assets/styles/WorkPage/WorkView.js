@@ -84,7 +84,7 @@ export const Description = styled.div`
 `;
 
 export const ImageFile = styled.img`
-    width: 50vw;
+    width: 20vw;
     height: auto;
     position: relative;
     top: 10vh;

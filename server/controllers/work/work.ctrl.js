@@ -17,7 +17,24 @@ exports.get_work = (req, res) => {
 }
 
 exports.get_workContent = (req, res) => {
+    getConnection((connection) => {
+        connection.query(`select work_id, title, description, image_file, user_id, date from work where work_id = ${req.params.id};`, function(err, rows) {
+            if(err) {
+                console.log({message: 'work is empty'});
+                res.status(404).send({message: 'work is empty'});
+            } else {
+                if(rows[0] == undefined) {
+                    console.log({message: 'work is undefined'});
+                    res.status(404).send({message: 'work is undefined'});
+                } else {
+                    console.log({message: 'work is filled'});
+                    res.status(200).send(rows[0]);
+                }
+            }
+        })
 
+        connection.release();
+    });
 }
 
 exports.post_work = (req, res) => {
@@ -32,9 +49,6 @@ exports.post_work = (req, res) => {
             
         var file = req.files.photo;
         var img_name=file.name;
-            
-        console.log(req.body.title);
-        console.log(req.files.photo);
 
         file.mv('./server/images/'+img_name, function(err) {
             if (err)
@@ -43,7 +57,9 @@ exports.post_work = (req, res) => {
             const regex = /\s/gm;
             const sample_name = img_name.replace(regex, '%20');
 
-            connection.query(`insert ignore into work (title, description, image_file) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${sample_name}');`, function(err, rows) {
+            const date = new Date().toISOString();
+
+            connection.query(`insert ignore into work (title, description, image_file, user_id, date) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${sample_name}', '${req.accessToken.id}', '${date.slice(0,10)}');`, function(err, rows) {
                 if(err) {
                     console.log({message: 'work is exist so insert failed'});
                     res.status(404).send({message: 'work is exist so insert failed'});
