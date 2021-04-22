@@ -4,7 +4,10 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
 app.use(fileUpload());
 app.use(cookieParser());
 app.use( '/images', express.static('./server/images'));

@@ -61,13 +61,11 @@ exports.post_signin = async(req, res) => {
                         issuer: 'kayin'
                     });
 
-                    res.cookie('accessToken', accessToken);
-                    res.cookie('refreshToken', refreshToken);
 
                     if(result[0].admin) {
-                        res.status(200).send({admin: true});
+                        res.status(200).send({admin: true, accessToken: accessToken, refreshToken: refreshToken});
                     } else {
-                        res.status(200).send({admin: false});
+                        res.status(200).send({admin: false, accessToken: accessToken, refreshToken: refreshToken});
                     }
                 } else {
                     console.log({message: 'password is not correct'});

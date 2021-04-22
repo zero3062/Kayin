@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 import * as SignPageStyle from '../../assets/styles/Sign/Sign';
 
@@ -36,6 +36,8 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
             axios.post(`http://10.156.145.178:8080/user/signin`, {
                 user_id: userId,
                 password: userPw
+            },{
+                withCredentials: true 
             })
             .then(res => {
                 console.log(res);
@@ -47,6 +49,14 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                         admin: res.data.admin
                     })
                 );
+
+                localStorage.setItem(
+                    'Authentication',
+                    JSON.stringify({
+                        accessToken: res.data.accessToken,
+                        refreshToken: res.data.refreshToken
+                    })
+                )
 
                 onChangeAuth(true, res.data.admin);
 
