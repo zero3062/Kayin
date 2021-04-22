@@ -53,11 +53,11 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
         <WorkWritePageStyle.Container>
             <WorkWritePageStyle.Contents>
                 <WorkWritePageStyle.ListViewer>
-                    <WorkWritePageStyle.WorkWriteHeader placeholder="제목" onChange={(e) => onChangeText(e.target.value, description)} value={title}/>
+                    <WorkWritePageStyle.WorkWriteHeader placeholder="Title" onChange={(e) => onChangeText(e.target.value, description)} value={title}/>
                     <WorkWritePageStyle.WorkWriteCreate type="button" value="Write" onClick={() => handleWrite()}/>
                     <WorkWritePageStyle.WorkWriteCancel type="button" value="Cancel" onClick={() => handleCancel()}/>
                     <WorkWritePageStyle.UnderBar/>
-                    <WorkWritePageStyle.TextArea placeholder="내용" onChange={(e) => onChangeText(title, e.target.value)} value={description}/>
+                    <WorkWritePageStyle.TextArea placeholder="Description" onChange={(e) => onChangeText(title, e.target.value)} value={description}/>
                     <WorkWritePageStyle.UnderBar/>
                     <WorkWritePageStyle.FileName value={fileName} disabled="disabled"></WorkWritePageStyle.FileName>
                     <WorkWritePageStyle.FileLabel for="upload_file">Upload</WorkWritePageStyle.FileLabel>

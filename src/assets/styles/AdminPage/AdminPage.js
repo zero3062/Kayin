@@ -59,13 +59,14 @@ export const HeaderID = styled.div`
 
 export const HeaderDate = styled.div`
     text-align: center;
-    flex-grow: 1.4;
+    flex-grow: 1;
+    width: 100px;
 `;
 
 export const HeaderOption = styled.div`
     text-align: center;
-    flex-grow: 1.1;
-    width: 50px;
+    flex-grow: 1;
+    width: 120px;
 `;
 
 export const List = styled.div`

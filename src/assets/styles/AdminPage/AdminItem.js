@@ -23,12 +23,13 @@ export const User = styled.div`
 export const Date = styled.div`
     text-align: center;
     flex-grow: 1;
+    width: 100px;
 `;
 
 export const Option = styled.div`
     text-align: center;
     flex-grow: 1;
-    width: 70px;
+    width: 120px;
     display: flex;
     justify-content: space-around;
 `;

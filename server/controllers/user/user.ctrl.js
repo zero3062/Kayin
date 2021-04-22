@@ -98,7 +98,3 @@ exports.post_forgot = (req, res) => {
         connection.release();
     })
 }
-
-exports.get_read = (req, res) => {
-    res.send({message:'asdf'});
-}

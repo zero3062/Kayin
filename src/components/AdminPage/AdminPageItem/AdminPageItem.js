@@ -9,9 +9,9 @@ const AdminItem = ({id, title, user, date, option}) => {
             <AdminItemStyle.Date>{date}</AdminItemStyle.Date>
             <AdminItemStyle.Option>
                 { !option && 
-                    <AdminItemStyle.Access>발행</AdminItemStyle.Access>
+                    <AdminItemStyle.Access>Publish</AdminItemStyle.Access>
                 }
-                <AdminItemStyle.Delete>삭제</AdminItemStyle.Delete>
+                <AdminItemStyle.Delete>Delete</AdminItemStyle.Delete>
             </AdminItemStyle.Option>
         </AdminItemStyle.Container>
     )
