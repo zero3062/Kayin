@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
 import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPageNumLimit, setPost } from '../../actions/Post';
 
+import axios from 'axios';
+
 const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
     let history = useHistory();
 
@@ -23,23 +25,17 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
         })
     }
 
-    const lists = [
-        {work_id : 1, title: "aasdfasdfasdfasdfasdfasdfasdfsdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
-    ];
-
     useEffect(() => {
-        onChangePageNumLimit(10);
-        onChangePost(lists);
-        onChangeCurrentpage(1);
+        axios.get(`http://10.156.145.178:8080/admin/`,{})
+        .then(res => {
+            console.log(res);
+            onChangePageNumLimit(10);
+            onChangePost(res.data.rows);
+            onChangeCurrentpage(1);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }, [])
 
     let num = 0;
@@ -82,7 +78,7 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
                         <AdminPageStyle.HeaderOption>옵션</AdminPageStyle.HeaderOption>
                     </AdminPageStyle.Header>
                     <AdminPageStyle.List>
-                        <AdminPageList lists={lists}></AdminPageList>
+                        <AdminPageList lists={currentPosts}></AdminPageList>
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
                 <AdminPageStyle.PaginationStyle>
