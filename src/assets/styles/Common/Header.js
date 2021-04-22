@@ -41,12 +41,12 @@ export const MenuItem = styled.li`
 
     &:nth-child(1) {
         margin-right: 4vw;
-        color: ${props => props.option === 1 && "red"}
+        color: ${props => props.option === 1 && "#FF3636"}
     }
 
     &:nth-child(2) {
         margin-right: 4vw;
-        color: ${props => props.option === 2 && "red"}
+        color: ${props => props.option === 2 && "#FF3636"}
     }
 
     @media screen and (max-width: 750px) {
@@ -89,10 +89,10 @@ export const SubMenuItem = styled.li`
     display: ${props => props.display && 'none' };
 
     &:nth-child(1) {
-        color: ${props => props.option === 1 && "red"}
+        color: ${props => props.option === 1 && "#FF3636"}
     }
 
     &:nth-child(2) {
-        color: ${props => props.option === 2 && "red"}
+        color: ${props => props.option === 2 && "#FF3636"}
     }
 `;

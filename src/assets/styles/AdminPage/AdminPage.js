@@ -41,14 +41,15 @@ export const Header = styled.div`
     background: rgb(60, 60, 60);
     margin-top: 10px;
     padding: 10px 20px;
-    width: 80vw;
+    width: 76vw;
     height: 25px;
     display: flex;
     align-items: center;
 `;
 
 export const HeaderTitle = styled.div`
-    flex-grow: 9;
+    flex-grow: 1;
+    width: 35vw;
 `;
 
 export const HeaderID = styled.div`
@@ -58,17 +59,18 @@ export const HeaderID = styled.div`
 
 export const HeaderDate = styled.div`
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 1.4;
 `;
 
 export const HeaderOption = styled.div`
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 1.1;
+    width: 50px;
 `;
 
 export const List = styled.div`
+    margin-top: 10px;
     padding: 10px 20px;
-    width: 80vw;
+    width: 76vw;
     height: 58vh;
-    background: red;
 `;

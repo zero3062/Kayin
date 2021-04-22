@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 
 import * as AdminPageStyle from '../../assets/styles/AdminPage/AdminPage';
+import AdminPageList from './AdminPageList/AdminPageList';
 
 import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
@@ -20,6 +21,19 @@ const AdminPage = ({onChangeAuth}) => {
         })
     }
 
+    const lists = [
+        {work_id : 1, title: "aasdfasdfasdfasdfasdfasdfasdfsdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
+    ]
+
     return (
         <AdminPageStyle.Container>
             <AdminPageStyle.Contents>
@@ -31,6 +45,7 @@ const AdminPage = ({onChangeAuth}) => {
                         <AdminPageStyle.HeaderOption>옵션</AdminPageStyle.HeaderOption>
                     </AdminPageStyle.Header>
                     <AdminPageStyle.List>
+                        <AdminPageList lists={lists}></AdminPageList>
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
             </AdminPageStyle.Contents>
