@@ -21,8 +21,6 @@ const ForgotPage = ({ userId, userPw, onChangeSign }) => {
             password: userPw
         })
         .then(res => {
-            console.log(res);
-
             history.push({
                 pathname: '/signin'
             });

@@ -2,7 +2,6 @@ import React from 'react';
 import * as WorkItemStyle from '../../../assets/styles/WorkPage/WorkItem';
 
 const WorkItem = ({id, title, description, sampleImg, handleWorkNum}) => {
-    console.log(sampleImg);
     return (
         <WorkItemStyle.Container id={id}>
             <WorkItemStyle.Contents>

@@ -24,7 +24,6 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 password: userPw
             })
             .then(res => {
-                console.log(res);
                 history.push({
                     pathname: '/signin'
                 })
@@ -40,8 +39,6 @@ const SignPage = ({ signOption, userId, userPw, onChangeAuth, onChangeSign }) =>
                 withCredentials: true 
             })
             .then(res => {
-                console.log(res);
-
                 localStorage.setItem(
                     'userItem',
                     JSON.stringify({

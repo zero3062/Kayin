@@ -2,7 +2,7 @@ const getConnection = require('../../models');
 
 exports.get_work = (req, res) => {
     getConnection((connection) => {
-        connection.query(`select work_id, title, description, image_file from work;`, function(err, rows) {
+        connection.query(`select work_id, title, description, image_file from work where access=true;`, function(err, rows) {
             if(err) {
                 console.log({message: 'work is exist so insert failed'});
                 res.status(404).send({message: 'work is exist so insert failed'});
@@ -18,7 +18,7 @@ exports.get_work = (req, res) => {
 
 exports.get_workContent = (req, res) => {
     getConnection((connection) => {
-        connection.query(`select work_id, title, description, image_file, user_id, date from work where work_id = ${req.params.id};`, function(err, rows) {
+        connection.query(`select work_id, title, description, image_file, user_id, date from work where work_id = ${req.params.id} and access=true;`, function(err, rows) {
             if(err) {
                 console.log({message: 'work is empty'});
                 res.status(404).send({message: 'work is empty'});
@@ -59,7 +59,7 @@ exports.post_work = (req, res) => {
 
             const date = new Date().toISOString();
 
-            connection.query(`insert ignore into work (title, description, image_file, user_id, date) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${sample_name}', '${req.accessToken.id}', '${date.slice(0,10)}');`, function(err, rows) {
+            connection.query(`insert ignore into work (title, description, image_file, user_id, date, access) values('${req.body.title}', '${req.body.description}' , 'http://10.156.145.178:8080/images/${sample_name}', '${req.accessToken.id}', '${date.slice(0,10)}', false);`, function(err, rows) {
                 if(err) {
                     console.log({message: 'work is exist so insert failed'});
                     res.status(404).send({message: 'work is exist so insert failed'});

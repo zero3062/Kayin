@@ -32,7 +32,6 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
             }
         })
         .then(res => {
-            console.log(res);
             history.push('/work')
         })
         .catch(err => {

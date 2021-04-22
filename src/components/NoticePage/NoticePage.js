@@ -15,7 +15,6 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/notice/`,{})
         .then(res => {
-            console.log(res);
             onChangePageNumLimit(10);
             onChangePost(res.data);
             onChangeCurrentpage(1);

@@ -14,8 +14,6 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/work/${id}`,{})
         .then(res => {
-            console.log(res);
-            console.log(res.data.image_file);
             onChangeWork(res.data.title, res.data.description, res.data.date, res.data.user_id, res.data.image_file);
         })
         .catch(err => {

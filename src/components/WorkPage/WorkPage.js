@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import WorkList from './WorkList/WorkList';
 import Pagination from '../Common/Pagination';
 import * as WorkPageStyle from '../../assets/styles/WorkPage/WorkPage';
-import sampleImg from '../../assets/images/main.png'
 
 import { connect } from 'react-redux';
 import { setPageNumLimit, setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPost } from '../../actions/Post';
@@ -13,19 +12,9 @@ import axios from 'axios';
 const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
     let history = useHistory();
 
-    // const post = [
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    //     {post_id: 1, title: '뭘까요?', description: '가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하', img: sampleImg},
-    // ]
-
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/work`, {})
         .then(res => {
-            console.log(res);
             onChangePageNumLimit(4);
             onChangePost(res.data.rows);
             onChangeCurrentpage(1);

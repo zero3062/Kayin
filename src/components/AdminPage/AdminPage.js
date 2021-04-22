@@ -23,7 +23,16 @@ const AdminPage = ({onChangeAuth}) => {
     return (
         <AdminPageStyle.Container>
             <AdminPageStyle.Contents>
-
+                <AdminPageStyle.Viewer>
+                    <AdminPageStyle.Header>
+                        <AdminPageStyle.HeaderTitle>제목</AdminPageStyle.HeaderTitle>
+                        <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
+                        <AdminPageStyle.HeaderDate>날짜</AdminPageStyle.HeaderDate>
+                        <AdminPageStyle.HeaderOption>옵션</AdminPageStyle.HeaderOption>
+                    </AdminPageStyle.Header>
+                    <AdminPageStyle.List>
+                    </AdminPageStyle.List>
+                </AdminPageStyle.Viewer>
             </AdminPageStyle.Contents>
         </AdminPageStyle.Container>
     )
