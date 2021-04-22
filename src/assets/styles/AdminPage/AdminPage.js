@@ -74,3 +74,24 @@ export const List = styled.div`
     width: 76vw;
     height: 58vh;
 `;
+
+export const PaginationStyle = styled.div`
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+`;
+
+export const pageOptionBtn = styled.div`
+    padding:5px;
+    width:25px;
+    color: white;
+    cursor: pointer;
+`;
+
+export const pageBtn = styled.div`
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+`;

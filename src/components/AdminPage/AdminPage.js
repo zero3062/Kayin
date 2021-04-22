@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 import * as AdminPageStyle from '../../assets/styles/AdminPage/AdminPage';
 import AdminPageList from './AdminPageList/AdminPageList';
+import Pagination from '../Common/Pagination';
 
 import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
+import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPageNumLimit, setPost } from '../../actions/Post';
 
-const AdminPage = ({onChangeAuth}) => {
+const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
     let history = useHistory();
 
     const local = localStorage.getItem('userItem');
@@ -22,17 +24,52 @@ const AdminPage = ({onChangeAuth}) => {
     }
 
     const lists = [
-        {work_id : 1, title: "aasdfasdfasdfasdfasdfasdfasdfsdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22', option: true},
-    ]
+        {work_id : 1, title: "aasdfasdfasdfasdfasdfasdfasdfsdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+        {work_id : 1, title: "asdf", user_id: "1234", date: '2021-04-22'},
+    ];
+
+    useEffect(() => {
+        onChangePageNumLimit(10);
+        onChangePost(lists);
+        onChangeCurrentpage(1);
+    }, [])
+
+    let num = 0;
+    pageNumbers.map(number => {
+        if(number < maxPageNumLimit+1 && number > minPageNumLimit){
+            num++;
+        }
+    })
+
+    const handlePrevBtn = () => {
+        if(currentPage != pageNumbers[0]) {
+            onChangeCurrentpage(currentPage - 1);
+
+            if((currentPage - 1)%10===0) {
+                onChangeMaxPageNumLimit(maxPageNumLimit - pageNumLimit);
+                onChangeMinPageNumLimit(minPageNumLimit - pageNumLimit);
+            }
+        }
+    }
+
+    const handleNextBtn = () => {
+        if(currentPage !== pageNumbers[pageNumbers.length - 1]) {
+            onChangeCurrentpage(currentPage + 1);
+
+            if(currentPage+1> maxPageNumLimit) {
+                onChangeMaxPageNumLimit(maxPageNumLimit + pageNumLimit);
+                onChangeMinPageNumLimit(minPageNumLimit + pageNumLimit);
+            }
+        }
+    }
 
     return (
         <AdminPageStyle.Container>
@@ -48,17 +85,48 @@ const AdminPage = ({onChangeAuth}) => {
                         <AdminPageList lists={lists}></AdminPageList>
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
+                <AdminPageStyle.PaginationStyle>
+                    <AdminPageStyle.pageOptionBtn onClick={handlePrevBtn}>
+                        <AdminPageStyle.pageBtn>◁</AdminPageStyle.pageBtn>
+                    </AdminPageStyle.pageOptionBtn>
+                    <Pagination
+                        currentPage={currentPage}
+                        paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
+                        pageNumbers={pageNumbers}
+                        maxPageNumLimit={maxPageNumLimit}
+                        minPageNumLimit={minPageNumLimit}
+                    />
+                    <AdminPageStyle.pageOptionBtn num={num} onClick={handleNextBtn}>
+                        <AdminPageStyle.pageBtn>▷</AdminPageStyle.pageBtn>
+                    </AdminPageStyle.pageOptionBtn>
+                </AdminPageStyle.PaginationStyle>
             </AdminPageStyle.Contents>
         </AdminPageStyle.Container>
     )
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapStateToProps = (state) => {
     return {
-        onChangeAuth: (auth, admin) => dispatch(setAuth(auth, admin)),
+        pageNumbers: state.post.pageNumbers,
+        pageNumLimit: state.post.pageNumLimit,
+        currentPage: state.post.currentPage,
+        currentPosts: state.post.currentPosts,
+        maxPageNumLimit: state.post.maxPageNumLimit,
+        minPageNumLimit: state.post.minPageNumLimit
     }
 }
 
-const AdminPageConnect = connect(null, mapDispatchToProps)(AdminPage);
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onChangeAuth: (auth, admin) => dispatch(setAuth(auth, admin)),
+        onChangePageNumLimit: (pageNumLimit) => dispatch(setPageNumLimit(pageNumLimit)),
+        onChangePost: (post) => dispatch(setPost(post)),
+        onChangeCurrentpage: (currentPage) => dispatch(setCurrentPage(currentPage)),
+        onChangeMaxPageNumLimit: (maxPageNumLimit) => dispatch(setMaxPageNumLimit(maxPageNumLimit)),
+        onChangeMinPageNumLimit: (minPageNumLimit) => dispatch(setMinPageNumLimit(minPageNumLimit))
+    }
+}
+
+const AdminPageConnect = connect(mapStateToProps, mapDispatchToProps)(AdminPage);
 
 export default AdminPageConnect;

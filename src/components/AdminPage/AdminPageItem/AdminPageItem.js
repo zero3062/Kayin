@@ -1,7 +1,7 @@
 import React from 'react';
 import * as AdminItemStyle from '../../../assets/styles/AdminPage/AdminItem';
 
-const AdminItem = ({id, title, user, date, option}) => {
+const AdminItem = ({id, title, user, date}) => {
     return (    
         <AdminItemStyle.Container id={id}>
             <AdminItemStyle.Title>{title}</AdminItemStyle.Title>

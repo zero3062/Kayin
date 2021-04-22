@@ -9,7 +9,6 @@ const AdminList = ({ lists }) => {
                 title={list.title}
                 user={list.user_id}
                 date={list.date}
-                option={list.access}
             />
         )
     )
