@@ -67,6 +67,30 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
         }
     }
 
+    const handleAdminNum = (num) => {
+        history.push({
+            pathname: `/admin/${num}`
+        })
+    }
+
+    const handleAdminPublish = (num) => {
+        axios.post(`http://10.156.145.178:8080/admin/publish/${num}`, {})
+        .then(res => {
+            axios.get(`http://10.156.145.178:8080/admin/`,{})
+            .then(res => {
+                onChangePageNumLimit(10);
+                onChangePost(res.data.rows);
+                onChangeCurrentpage(1);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
         <AdminPageStyle.Container>
             <AdminPageStyle.Contents>
@@ -75,10 +99,10 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
                         <AdminPageStyle.HeaderTitle>Title</AdminPageStyle.HeaderTitle>
                         <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
                         <AdminPageStyle.HeaderDate>Date</AdminPageStyle.HeaderDate>
-                        <AdminPageStyle.HeaderOption>Option</AdminPageStyle.HeaderOption>
+                        <AdminPageStyle.HeaderOption>Optionww</AdminPageStyle.HeaderOption>
                     </AdminPageStyle.Header>
                     <AdminPageStyle.List>
-                        <AdminPageList lists={currentPosts}></AdminPageList>
+                        <AdminPageList lists={currentPosts} handleAdminNum={handleAdminNum} handleAdminPublish={handleAdminPublish}></AdminPageList>
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
                 <AdminPageStyle.PaginationStyle>
