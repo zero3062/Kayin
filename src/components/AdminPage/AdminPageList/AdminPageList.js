@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminItem from '../AdminPageItem/AdminPageItem';
 
-const AdminList = ({ lists, handleAdminNum, handleAdminPublish }) => {
+const AdminList = ({ lists, handleAdminNum, handleAdminPublish, handleAdminDelete }) => {
     const adminItem = lists.map(
         list => (
             <AdminItem
@@ -12,6 +12,7 @@ const AdminList = ({ lists, handleAdminNum, handleAdminPublish }) => {
                 option={list.access}
                 handleAdminNum={handleAdminNum}
                 handleAdminPublish={handleAdminPublish}
+                handleAdminDelete={handleAdminDelete}
             />
         )
     )

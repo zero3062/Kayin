@@ -12,6 +12,8 @@ router.get('/:id', jsonParser, ctrl.get_adminContent);
 
 router.post('/publish/:id', jsonParser, ctrl.post_publish);
 
-router.post('/create', checkTokens, checkUser, jsonParser, ctrl.post_work);
+router.post('/delete/write', checkTokens, checkUser, jsonParser, ctrl.post_writeDelete);
+
+router.post('/delete/:id', checkTokens, checkUser, jsonParser, ctrl.post_delete);
 
 module.exports = router;

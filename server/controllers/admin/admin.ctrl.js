@@ -54,5 +54,36 @@ exports.post_publish = (req, res) => {
     });
 }
 
-exports.post_work = (req, res) => {
+exports.post_writeDelete = (req, res) => {
+    getConnection((connection) => {
+        const date = new Date().toISOString();
+
+        connection.query(`insert into notice (title, date, description) values('${req.body.title}', '${date.slice(0,10)}', '${req.body.description}');`, function(err) {
+            if(!err) {
+                console.log({message: 'isnert notice : success'});
+                res.status(200).send();
+            } else {
+                console.log({message: 'isnert notice : false'});
+                res.status(404).send({message: 'isnert notice : false'});
+            }
+        })
+
+        connection.release();
+    });
 }
+
+exports.post_delete = (req, res) => {
+    getConnection((connection) => {
+        connection.query(`delete from work where work_id = ${req.params.id};`, function(err) {
+            if(!err) {
+                console.log({message: 'delete work : success'});
+                res.status(200).send();
+            } else {
+                console.log({message: 'delete work : false'});
+                res.status(404).send({message: 'delete work : false'});
+            }
+        })
+
+        connection.release();
+    });
+} 

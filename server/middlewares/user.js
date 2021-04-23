@@ -2,6 +2,9 @@ const {verifyToken} = require('../utils/jwt');
 
 module.exports = {
     async checkTokens(req, res, next) {
+        console.log(req.headers);
+        console.log("");
+        console.log(req.headers.authentication);
         if(req.headers.authentication == undefined) throw Error('You don\'t have the API Access');
         
         const accessToken = verifyToken(req.headers.authentication);

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as AdminItemStyle from '../../../assets/styles/AdminPage/AdminItem';
 
-const AdminItem = ({id, title, user, date, option, handleAdminNum, handleAdminPublish}) => {
+const AdminItem = ({id, title, user, date, option, handleAdminNum, handleAdminPublish, handleAdminDelete}) => {
     return (    
         <AdminItemStyle.Container id={id}>
             <AdminItemStyle.Title onClick={() => handleAdminNum(id)}>{title}</AdminItemStyle.Title>
@@ -11,7 +11,7 @@ const AdminItem = ({id, title, user, date, option, handleAdminNum, handleAdminPu
                 { !option && 
                     <AdminItemStyle.Access onClick={() => handleAdminPublish(id)}>Publish</AdminItemStyle.Access>
                 }
-                <AdminItemStyle.Delete>Delete</AdminItemStyle.Delete>
+                <AdminItemStyle.Delete onClick={() => handleAdminDelete(id)}>Delete</AdminItemStyle.Delete>
             </AdminItemStyle.Option>
         </AdminItemStyle.Container>
     )

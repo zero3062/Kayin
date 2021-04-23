@@ -91,6 +91,12 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
         })
     }
 
+    const handleAdminDelete = (num) => {
+        history.push({
+            pathname: `/admin/delete/${num}`
+        })
+    }
+
     return (
         <AdminPageStyle.Container>
             <AdminPageStyle.Contents>
@@ -99,10 +105,15 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
                         <AdminPageStyle.HeaderTitle>Title</AdminPageStyle.HeaderTitle>
                         <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
                         <AdminPageStyle.HeaderDate>Date</AdminPageStyle.HeaderDate>
-                        <AdminPageStyle.HeaderOption>Optionww</AdminPageStyle.HeaderOption>
+                        <AdminPageStyle.HeaderOption>Option</AdminPageStyle.HeaderOption>
                     </AdminPageStyle.Header>
                     <AdminPageStyle.List>
-                        <AdminPageList lists={currentPosts} handleAdminNum={handleAdminNum} handleAdminPublish={handleAdminPublish}></AdminPageList>
+                        <AdminPageList 
+                            lists={currentPosts} 
+                            handleAdminNum={handleAdminNum} 
+                            handleAdminPublish={handleAdminPublish}
+                            handleAdminDelete={handleAdminDelete}
+                        />
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
                 <AdminPageStyle.PaginationStyle>
