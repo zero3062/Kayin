@@ -69,5 +69,6 @@ npm install cookie-parser
 |title|varchar(200)|YES||NULL||
 |description|varchar(200)|Yes||NULL||
 |image_file|varchar(200)|Yes||NULL||
-|user_id|varchar(100)|NO||NULL||
-|date|varchar(10)|NO||NULL||
+|user_id|varchar(200)|Yes||NULL||
+|date|varchar(10)|Yes||NULL||
+|access|tinyint(1)|Yes||NULL||
