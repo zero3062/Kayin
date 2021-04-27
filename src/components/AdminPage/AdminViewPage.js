@@ -12,7 +12,7 @@ const AdminViewPage = ({ title, description, date, user, image_file, onChangeWor
     let {id} = useParams();
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/admin/${id}`,{})
+        axios.get(`http://10.156.145.178:8080/admin/work/${id}`,{})
         .then(res => {
             onChangeWork(res.data.title, res.data.description, res.data.date, res.data.user_id, res.data.image_file);
         })

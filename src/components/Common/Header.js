@@ -14,10 +14,15 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
     let location = useLocation();
 
     useEffect(() => {
+        console.log(location.pathname);
         if(location.pathname.indexOf("notice") != -1) {
             onChangeOption(1);
         } else if(location.pathname.indexOf("work") != -1 ){
             onChangeOption(2);
+        } else if (location.pathname.indexOf("delete") != -1) {
+            onChangeOption(2);
+        } else if (location.pathname.indexOf("admin") != -1) {
+            onChangeOption(1);
         } else {
             onChangeOption(0);
         }
@@ -30,7 +35,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
     }
 
     const handleMain = () => {
-        onChangeOption(0);
+        onChangeOption(admin ? 1 :  0);
         onChangeMenuBar(false);
         history.push({
             pathname: auth ? '/admin' : '/'
@@ -41,7 +46,8 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
         if(auth) {
             onChangeOption(1);
             onChangeMenuBar(false);
-            history.push('/notice');
+            history.push({
+                pathname: admin ? '/admin/notice' :'/notice'});
         } else {
             alert("메뉴 접근 관한이 없습니다");
             onChangeMenuBar(false);
@@ -53,7 +59,9 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
         if(auth) {
             onChangeOption(2);
             onChangeMenuBar(false);
-            history.push('/work');
+            history.push({
+                pathname: admin ? '/admin/work' :'/work'
+            });
         } else {
             alert("메뉴 접근 관한이 없습니다");
             onChangeMenuBar(false);
@@ -89,7 +97,7 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
     return (
         <HeaderStyle.Container menubar={menubar}>
             <HeaderStyle.Contents>
-                <HeaderStyle.Logo onClick={() => handleMain()}>Kayin{admin && " Admin"}</HeaderStyle.Logo>
+                <HeaderStyle.Logo onClick={() => handleMain()}>Kayin</HeaderStyle.Logo>
                 <HeaderStyle.Menu>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleNotice()}>Notice</HeaderStyle.MenuItem>
                     <HeaderStyle.MenuItem display={admin} option={option} onClick={() => handleWork()}>Work</HeaderStyle.MenuItem>

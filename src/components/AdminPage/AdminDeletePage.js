@@ -32,14 +32,14 @@ const AdminDeletePage = ({ title, description, onChangeText }) => {
             }
         })
         .then(res => {
-            axios.post(`http://10.156.145.178:8080/admin/delete/${id}`, {},
+            axios.post(`http://10.156.145.178:8080/admin/work/delete/${id}`, {},
             {
                 headers: {
                     'Authentication': JSON.parse(local).accessToken
                 }
             })
             .then(res => {
-                history.push('/admin')
+                history.push('/admin/work')
             })
             .catch(err => {
                 console.log(err);
@@ -51,7 +51,7 @@ const AdminDeletePage = ({ title, description, onChangeText }) => {
     }
 
     const handleCancel = () => {
-        history.push('/admin')
+        history.push('/admin/work')
     }
 
     return(

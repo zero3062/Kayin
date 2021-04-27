@@ -11,7 +11,7 @@ import { setCurrentPage, setMaxPageNumLimit, setMinPageNumLimit, setPageNumLimit
 
 import axios from 'axios';
 
-const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
+const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPosts, pageNumbers, maxPageNumLimit, minPageNumLimit, onChangePost, onChangeCurrentpage, onChangeMaxPageNumLimit, onChangeMinPageNumLimit, onChangePageNumLimit}) => {
     let history = useHistory();
 
     const local = localStorage.getItem('userItem');
@@ -26,7 +26,8 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
     }
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/admin/`,{})
+        console.log(option);
+        axios.get(`http://10.156.145.178:8080/admin/${option}`,{})
         .then(res => {
             console.log(res);
             onChangePageNumLimit(10);
@@ -69,14 +70,14 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
 
     const handleAdminNum = (num) => {
         history.push({
-            pathname: `/admin/${num}`
+            pathname: `/admin/work/${num}`
         })
     }
 
     const handleAdminPublish = (num) => {
-        axios.post(`http://10.156.145.178:8080/admin/publish/${num}`, {})
+        axios.post(`http://10.156.145.178:8080/admin//publish/${num}`, {})
         .then(res => {
-            axios.get(`http://10.156.145.178:8080/admin/`,{})
+            axios.get(`http://10.156.145.178:8080/admin/${option}`,{})
             .then(res => {
                 onChangePageNumLimit(10);
                 onChangePost(res.data.rows);
@@ -103,12 +104,15 @@ const AdminPage = ({onChangeAuth, currentPage, pageNumLimit, currentPosts, pageN
                 <AdminPageStyle.Viewer>
                     <AdminPageStyle.Header>
                         <AdminPageStyle.HeaderTitle>Title</AdminPageStyle.HeaderTitle>
-                        <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
+                        { option == "work" &&
+                            <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
+                        }
                         <AdminPageStyle.HeaderDate>Date</AdminPageStyle.HeaderDate>
                         <AdminPageStyle.HeaderOption>Option</AdminPageStyle.HeaderOption>
                     </AdminPageStyle.Header>
                     <AdminPageStyle.List>
                         <AdminPageList 
+                            option={option}
                             lists={currentPosts} 
                             handleAdminNum={handleAdminNum} 
                             handleAdminPublish={handleAdminPublish}

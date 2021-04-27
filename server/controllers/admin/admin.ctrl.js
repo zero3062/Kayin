@@ -1,6 +1,22 @@
 const getConnection = require('../../models');
 
-exports.get_admin = (req, res) => {
+exports.get_noticeAdmin = (req, res) => {
+    getConnection((connection) => {
+        connection.query(`select notice_id, title, date from notice;`, function(err, rows) {
+            if(err) {
+                console.log({message: 'notice is exist so insert failed'});
+                res.status(404).send({message: 'notice is exist so insert failed'});
+            } else {
+                console.log({message: 'insert success'});
+                res.status(200).send({rows});
+            }
+        })
+
+        connection.release();
+    });
+}
+
+exports.get_workAdmin = (req, res) => {
     getConnection((connection) => {
         connection.query(`select work_id, title, user_id, date, access from work;`, function(err, rows) {
             if(err) {
@@ -16,7 +32,28 @@ exports.get_admin = (req, res) => {
     });
 }
 
-exports.get_adminContent = (req, res) => {
+exports.get_adminNoticeContent = (req, res) => {
+    getConnection((connection) => {
+        connection.query(`select notice_id, title, description, date from notice where notice_id = ${req.params.id};`, function(err, rows) {
+            if(err) {
+                console.log({message: 'notice is empty'});
+                res.status(404).send({message: 'notice is empty'});
+            } else {
+                if(rows[0] == undefined) {
+                    console.log({message: 'notice is undefined'});
+                    res.status(404).send({message: 'notice is undefined'});
+                } else {
+                    console.log({message: 'notice is filled'});
+                    res.status(200).send(rows[0]);
+                }
+            }
+        })
+
+        connection.release();
+    })
+}
+
+exports.get_adminWorkContent = (req, res) => {
     getConnection((connection) => {
         connection.query(`select work_id, title, description, image_file, user_id, date from work where work_id = ${req.params.id};`, function(err, rows) {
             if(err) {
@@ -37,9 +74,27 @@ exports.get_adminContent = (req, res) => {
     });
 }
 
+exports.post_edit = (req, res) => {
+    getConnection((connection) => {
+
+        const date = new Date().toISOString();
+
+        connection.query(`update notice set title='${req.body.title}', description='${req.body.description}', date='${date.slice(0,10)}' where work_id=${req.params.id}`, function(err) {
+            if(!err) {
+                console.log({message: 'reset notice : success'});
+                res.status(200).send();
+            } else {
+                console.log({message: 'id is not exist'});
+                res.status(404).send({message: 'id is not exist'});
+            }
+        })
+
+        connection.release();
+    });
+}
+
 exports.post_publish = (req, res) => {
     getConnection((connection) => {
-        console.log(req.params.id);
         connection.query(`update work set access=true where work_id=${req.params.id}`, function(err) {
             if(!err) {
                 console.log({message: 'reset access : success'});
@@ -72,7 +127,23 @@ exports.post_writeDelete = (req, res) => {
     });
 }
 
-exports.post_delete = (req, res) => {
+exports.post_noticeDelete = (req, res) => {
+    getConnection((connection) => {
+        connection.query(`delete from notice where notice_id = ${req.params.id};`, function(err) {
+            if(!err) {
+                console.log({message: 'delete notice : success'});
+                res.status(200).send();
+            } else {
+                console.log({message: 'delete notice : false'});
+                res.status(404).send({message: 'delete notice : false'});
+            }
+        })
+
+        connection.release();
+    });
+}
+
+exports.post_workDelete = (req, res) => {
     getConnection((connection) => {
         connection.query(`delete from work where work_id = ${req.params.id};`, function(err) {
             if(!err) {

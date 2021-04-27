@@ -37,7 +37,6 @@ export const MenuItem = styled.li`
     float: left;
     font-size: 40px;
     cursor: pointer;
-    display: ${props => props.display && 'none' };
 
     &:nth-child(1) {
         margin-right: 4vw;
@@ -86,7 +85,6 @@ export const SubMenu = styled.ul`
 export const SubMenuItem = styled.li`
     font-size: 40px;
     cursor: pointer;
-    display: ${props => props.display && 'none' };
 
     &:nth-child(1) {
         color: ${props => props.option === 1 && "#FF3636"}
