@@ -74,28 +74,59 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
         })
     }
 
-    const handleAdminPublish = (num) => {
-        axios.post(`http://10.156.145.178:8080/admin//publish/${num}`, {})
-        .then(res => {
-            axios.get(`http://10.156.145.178:8080/admin/${option}`,{})
+    const handleAdminSubmit = (num) => {
+        if(option=='notice') {
+
+        } else {
+            axios.post(`http://10.156.145.178:8080/admin/publish/${num}`, {})
             .then(res => {
-                onChangePageNumLimit(10);
-                onChangePost(res.data.rows);
-                onChangeCurrentpage(1);
+                axios.get(`http://10.156.145.178:8080/admin/work`,{})
+                .then(res => {
+                    onChangePageNumLimit(10);
+                    onChangePost(res.data.rows);
+                    onChangeCurrentpage(1);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             })
             .catch(err => {
                 console.log(err);
             })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        }
+
     }
 
     const handleAdminDelete = (num) => {
-        history.push({
-            pathname: `/admin/delete/${num}`
-        })
+
+        if(option=='notice') {
+            const local = localStorage.getItem('Authentication');
+
+            axios.post(`http://10.156.145.178:8080/admin/notice/delete/${num}`, {},
+            {
+                headers: {
+                'Authentication': JSON.parse(local).accessToken
+                }
+            })
+            .then(res => {
+                axios.get(`http://10.156.145.178:8080/admin/${option}`,{})
+                .then(res => {
+                    onChangePageNumLimit(10);
+                    onChangePost(res.data.rows);
+                    onChangeCurrentpage(1);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        } else {
+            history.push({
+                pathname: `/admin/delete/${num}`
+            })
+        }
     }
 
     return (
@@ -115,7 +146,7 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
                             option={option}
                             lists={currentPosts} 
                             handleAdminNum={handleAdminNum} 
-                            handleAdminPublish={handleAdminPublish}
+                            handleAdminSubmit={handleAdminSubmit}
                             handleAdminDelete={handleAdminDelete}
                         />
                     </AdminPageStyle.List>

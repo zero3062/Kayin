@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminItem from '../AdminPageItem/AdminPageItem';
 
-const AdminList = ({ option, lists, handleAdminNum, handleAdminPublish, handleAdminDelete }) => {
+const AdminList = ({ option, lists, handleAdminNum, handleAdminSubmit, handleAdminDelete }) => {
     const adminItem = option=="notice" ? lists.map(
         list => (
             <AdminItem
@@ -10,7 +10,7 @@ const AdminList = ({ option, lists, handleAdminNum, handleAdminPublish, handleAd
                 title={list.title}
                 date={list.date}
                 handleAdminNum={handleAdminNum}
-                handleAdminPublish={handleAdminPublish}
+                handleAdminSubmit={handleAdminSubmit}
                 handleAdminDelete={handleAdminDelete}
             />
         )
@@ -25,7 +25,7 @@ const AdminList = ({ option, lists, handleAdminNum, handleAdminPublish, handleAd
                 date={list.date}
                 access={list.access}
                 handleAdminNum={handleAdminNum}
-                handleAdminPublish={handleAdminPublish}
+                handleAdminSubmit={handleAdminSubmit}
                 handleAdminDelete={handleAdminDelete}
             />
         )
