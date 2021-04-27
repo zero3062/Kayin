@@ -70,13 +70,15 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
 
     const handleAdminNum = (num) => {
         history.push({
-            pathname: `/admin/work/${num}`
+            pathname: `/admin/${option}/${num}`
         })
     }
 
     const handleAdminSubmit = (num) => {
         if(option=='notice') {
-
+            history.push({
+                pathname: `/admin/edit/${num}`
+            })
         } else {
             axios.post(`http://10.156.145.178:8080/admin/publish/${num}`, {})
             .then(res => {

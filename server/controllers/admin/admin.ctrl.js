@@ -78,8 +78,8 @@ exports.post_edit = (req, res) => {
     getConnection((connection) => {
 
         const date = new Date().toISOString();
-
-        connection.query(`update notice set title='${req.body.title}', description='${req.body.description}', date='${date.slice(0,10)}' where work_id=${req.params.id}`, function(err) {
+        console.log(req.body);
+        connection.query(`update notice set title='${req.body.title}', description='${req.body.description}', date='${date.slice(0,10)}' where notice_id=${req.params.id}`, function(err) {
             if(!err) {
                 console.log({message: 'reset notice : success'});
                 res.status(200).send();

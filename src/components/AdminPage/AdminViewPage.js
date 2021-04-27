@@ -3,18 +3,21 @@ import { useHistory, useParams } from 'react-router';
 import * as AdminViewPageStyle from '../../assets/styles/AdminPage/AdminView';
 
 import { connect } from 'react-redux';
-import { setWork } from '../../actions/Contents';
+import { setNotice, setWork } from '../../actions/Contents';
 
 import axios from 'axios';
 
-const AdminViewPage = ({ title, description, date, user, image_file, onChangeWork}) => {
+const AdminViewPage = ({ option, title, description, date, user, image_file, onChangeNotice, onChangeWork}) => {
     let history = useHistory();
     let {id} = useParams();
 
     useEffect(() => {
-        axios.get(`http://10.156.145.178:8080/admin/work/${id}`,{})
+        axios.get(`http://10.156.145.178:8080/admin/${option}/${id}`,{})
         .then(res => {
-            onChangeWork(res.data.title, res.data.description, res.data.date, res.data.user_id, res.data.image_file);
+            if(option == "notice") 
+                onChangeNotice(res.data.title, res.data.description, res.data.date);
+            else 
+                onChangeWork(res.data.title, res.data.description, res.data.date, res.data.user_id, res.data.image_file);
         })
         .catch(err => {
             console.log(err);
@@ -31,12 +34,16 @@ const AdminViewPage = ({ title, description, date, user, image_file, onChangeWor
                     <AdminViewPageStyle.WorkHeader>{title}</AdminViewPageStyle.WorkHeader>
                     <AdminViewPageStyle.Information>
                         <AdminViewPageStyle.DateView>{date}</AdminViewPageStyle.DateView>
-                        <AdminViewPageStyle.UserId>{user}</AdminViewPageStyle.UserId>
+                        { option != "notice" &&
+                            <AdminViewPageStyle.UserId>{user}</AdminViewPageStyle.UserId>
+                        }
                     </AdminViewPageStyle.Information>
                     <AdminViewPageStyle.UnderBar/>
                     <AdminViewPageStyle.MainContents>
                         <AdminViewPageStyle.Description>{description}</AdminViewPageStyle.Description>
-                        <AdminViewPageStyle.ImageFile src={image_file}/>
+                        { option != "notice" &&
+                            <AdminViewPageStyle.ImageFile src={image_file}/>
+                        }
                     </AdminViewPageStyle.MainContents>
                 </AdminViewPageStyle.ListViewer>
             </AdminViewPageStyle.Contents>
@@ -56,6 +63,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
+        onChangeNotice: (title, description, date) => dispatch(setNotice(title, description, date)),
         onChangeWork: (title, description, date, user, image_file) => dispatch(setWork(title, description, date, user, image_file))
     }
 }

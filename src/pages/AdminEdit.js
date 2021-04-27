@@ -1,11 +1,11 @@
 import React from 'react';
 import AdminWritePage from '../components/AdminPage/AdminDeletePage';
 
-const AdminDelete = () => {
+const AdminEdit = () => {
     return(
-        <AdminWritePage option="work">
+        <AdminWritePage option="notice">
         </AdminWritePage>
     )
 }
 
-export default AdminDelete;
+export default AdminEdit;
