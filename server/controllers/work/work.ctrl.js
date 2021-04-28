@@ -42,7 +42,6 @@ exports.post_work = (req, res) => {
     getConnection((connection) => {
         if (!req.files)
             return res.status(400).send('No files were uploaded.');
-
             
         if(req.body.title == '' || req.body.description == '') 
             return res.status(401).send('No Data were undefied'); 
@@ -71,5 +70,22 @@ exports.post_work = (req, res) => {
 
             connection.release();
         })
+    })
+}
+
+exports.post_workDelete = (req, res) => {
+    getConnection((connection) => {
+
+        connection.query(`delete from work where work_id = ${req.params.id}`, function(err, rows) {
+            if(err) {
+                console.log({message: 'work delete failed'});
+                res.status(404).send({message: 'work delete failed'});
+            } else {
+                console.log({message: 'delete success'});
+                res.status(200).send({message: 'delete success'});
+            }
+        })
+
+        connection.release();
     })
 }

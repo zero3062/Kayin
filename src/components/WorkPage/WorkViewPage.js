@@ -24,6 +24,24 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
         })
     },[])
 
+    const handleContentDelete = () => {
+
+        const local = localStorage.getItem('Authentication');
+
+        axios.post(`http://10.156.145.178:8080/work/delete/${id}`, {}, {
+            headers : {
+                'Authentication': JSON.parse(local).accessToken
+            }
+        })
+        .then(res => {
+            console.log(res);
+            history.push('/work');
+        })
+        .then(err => {
+            console.log(err);
+        })
+    }
+
     return(
         <WorkViewPageStyle.Container>
             <WorkViewPageStyle.Contents>
@@ -42,7 +60,7 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
                             <WorkViewPageStyle.ImageFile src={image_file}/>
                             <WorkViewPageStyle.BtnBottom>
                                 <WorkViewPageStyle.EditButton>Edit</WorkViewPageStyle.EditButton>
-                                <WorkViewPageStyle.DeleteButton>Delete</WorkViewPageStyle.DeleteButton>
+                                <WorkViewPageStyle.DeleteButton onClick={() => handleContentDelete()}>Delete</WorkViewPageStyle.DeleteButton>
                             </WorkViewPageStyle.BtnBottom>
                         </WorkViewPageStyle.MainBottom>
                     </WorkViewPageStyle.MainContents>

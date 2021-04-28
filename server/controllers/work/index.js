@@ -12,4 +12,6 @@ router.get('/:id', jsonParser, ctrl.get_workContent);
 
 router.post('/create', checkTokens, checkUser, jsonParser, ctrl.post_work);
 
+router.post('/delete/:id', checkTokens, checkUser, jsonParser, ctrl.post_workDelete);
+
 module.exports = router;
