@@ -14,7 +14,6 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
     let location = useLocation();
 
     useEffect(() => {
-        console.log(location.pathname);
         if(location.pathname.indexOf("notice") != -1) {
             onChangeOption(1);
         } else if(location.pathname.indexOf("work") != -1 ){

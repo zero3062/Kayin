@@ -98,3 +98,20 @@ exports.post_forgot = (req, res) => {
         connection.release();
     })
 }
+
+exports.get_myName = (req, res) => {
+    getConnection((connection) => {
+        console.log(req.headers.authentication);
+        connection.query(`select id from user where user_id=(select user_id from token where content='${req.headers.authentication}');`, function(err, rows) {
+            if(!err) {
+                console.log({message: 'user name get : success'});
+                res.status(200).send(rows[0]);
+            } else {
+                console.log({message: 'user name get : failed'});
+                res.status(404).send({message: 'user name get : failed'});
+            }
+        })
+
+        connection.release();
+    })
+}

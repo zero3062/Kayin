@@ -1,4 +1,4 @@
-import { SET_NOTICE, SET_WORK } from '../actions/Contents';
+import { SET_NOTICE, SET_WORK, SET_MINE } from '../actions/Contents';
 
 const contentsIntialState = {
     title: '',
@@ -6,6 +6,7 @@ const contentsIntialState = {
     date: '',
     user: '',
     image_file: '',
+    mine: false
 }
 
 const contents = (state=contentsIntialState, action) => {
@@ -23,6 +24,10 @@ const contents = (state=contentsIntialState, action) => {
                 date: action.date,
                 user: action.user,
                 image_file: action.image_file
+            })
+        case SET_MINE:
+            return Object.assign({}, state, {
+                mine: action.id == state.user ? true : false
             })
         default:
             return state

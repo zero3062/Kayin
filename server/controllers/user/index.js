@@ -12,4 +12,6 @@ router.post('/signin', jsonParser, ctrl.post_signin);
 
 router.post('/forgot', jsonParser, ctrl.post_forgot);
 
+router.get('/myName', jsonParser, ctrl.get_myName)
+
 module.exports = router;
