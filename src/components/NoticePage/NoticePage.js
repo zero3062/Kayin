@@ -33,7 +33,7 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
     })
 
     const handlePrevBtn = () => {
-        if(currentPage != pageNumbers[0]) {
+        if(currentPage !== pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
 
             if((currentPage - 1)%10===0) {
@@ -71,9 +71,9 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
                     </NoticePageStyle.List>
                 </NoticePageStyle.ListViewer>
                 <NoticePageStyle.PaginationStyle>
-                    <NoticePageStyle.pageOptionBtn onClick={handlePrevBtn}>
-                        <NoticePageStyle.pageBtn>◁</NoticePageStyle.pageBtn>
-                    </NoticePageStyle.pageOptionBtn>
+                    <NoticePageStyle.PageOptionBtn onClick={handlePrevBtn}>
+                        <NoticePageStyle.PageBtn>◁</NoticePageStyle.PageBtn>
+                    </NoticePageStyle.PageOptionBtn>
                     <Pagination
                         currentPage={currentPage}
                         paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
@@ -81,9 +81,9 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}
                     />
-                    <NoticePageStyle.pageOptionBtn num={num} onClick={handleNextBtn}>
-                        <NoticePageStyle.pageBtn>▷</NoticePageStyle.pageBtn>
-                    </NoticePageStyle.pageOptionBtn>
+                    <NoticePageStyle.PageOptionBtn num={num} onClick={handleNextBtn}>
+                        <NoticePageStyle.PageBtn>▷</NoticePageStyle.PageBtn>
+                    </NoticePageStyle.PageOptionBtn>
                 </NoticePageStyle.PaginationStyle>
             </NoticePageStyle.Contents>
         </NoticePageStyle.Container>

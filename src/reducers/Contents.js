@@ -27,7 +27,7 @@ const contents = (state=contentsIntialState, action) => {
             })
         case SET_MINE:
             return Object.assign({}, state, {
-                mine: action.id == state.user ? true : false
+                mine: action.id === state.user ? true : false
             })
         default:
             return state

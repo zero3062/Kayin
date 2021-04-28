@@ -2,7 +2,7 @@ import React from 'react';
 import AdminItem from '../AdminPageItem/AdminPageItem';
 
 const AdminList = ({ option, lists, handleAdminNum, handleAdminSubmit, handleAdminDelete }) => {
-    const adminItem = option=="notice" ? lists.map(
+    const adminItem = option === "notice" ? lists.map(
         list => (
             <AdminItem
                 option={option}

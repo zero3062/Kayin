@@ -14,7 +14,7 @@ const WorkWritePage = ({ option, title, description, image_info, onChangeText, o
     const [fileName, setFileName] = useState('file name...');
 
     useEffect(() => {
-        if(option=="edit") {
+        if(option==="edit") {
             axios.get(`http://10.156.145.178:8080/work/${id}`,{})
             .then(res => {
                 onChangeText(res.data.title, res.data.description);
@@ -43,7 +43,7 @@ const WorkWritePage = ({ option, title, description, image_info, onChangeText, o
         const writeUrl = `http://10.156.145.178:8080/work/create`;
         const editUrl = `http://10.156.145.178:8080/work/edit/${id}`;
 
-        axios.post(option=="edit" ? editUrl : writeUrl, formData, {
+        axios.post(option==="edit" ? editUrl : writeUrl, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authentication' : JSON.parse(local).accessToken
@@ -59,7 +59,7 @@ const WorkWritePage = ({ option, title, description, image_info, onChangeText, o
 
     const handleCancel = () => {
         history.push({
-            pathname: option=="edit" ? `/work/${id}` : '/work'
+            pathname: option==="edit" ? `/work/${id}` : '/work'
         });
     }
 
@@ -92,7 +92,7 @@ let mapStateToProps = (state) => {
     return {
         title: state.write.title,
         description: state.write.description,
-        image_info: state.write. image_info
+        image_info: state.write.image_info
     }
 }
 

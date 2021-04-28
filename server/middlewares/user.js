@@ -5,12 +5,12 @@ module.exports = {
         console.log(req.headers);
         console.log("");
         console.log(req.headers.authentication);
-        if(req.headers.authentication == undefined) throw Error('You don\'t have the API Access');
+        if(req.headers.authentication === undefined) throw Error('You don\'t have the API Access');
         
         const accessToken = verifyToken(req.headers.authentication);
         // const refreshToken = verifyToken(req.cookies.refreshToken);
 
-        if(accessToken == null) {
+        if(accessToken === null) {
             // if(refreshToken == null) 
             //     throw Error('You don\'t have the API Access');
             // else {

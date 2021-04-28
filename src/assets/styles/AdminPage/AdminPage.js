@@ -84,14 +84,14 @@ export const PaginationStyle = styled.div`
     height: 8vh;
 `;
 
-export const pageOptionBtn = styled.div`
+export const PageOptionBtn = styled.div`
     padding:5px;
     width:25px;
     color: white;
     cursor: pointer;
 `;
 
-export const pageBtn = styled.div`
+export const PageBtn = styled.div`
     font-weight: bold;
     font-size: 15px;
     text-align: center;

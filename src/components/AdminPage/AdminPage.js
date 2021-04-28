@@ -47,7 +47,7 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
     })
 
     const handlePrevBtn = () => {
-        if(currentPage != pageNumbers[0]) {
+        if(currentPage !== pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
 
             if((currentPage - 1)%10===0) {
@@ -75,7 +75,7 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
     }
 
     const handleAdminSubmit = (num) => {
-        if(option=='notice') {
+        if(option==='notice') {
             history.push({
                 pathname: `/admin/edit/${num}`
             })
@@ -101,7 +101,7 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
 
     const handleAdminDelete = (num) => {
 
-        if(option=='notice') {
+        if(option==='notice') {
             const local = localStorage.getItem('Authentication');
 
             axios.post(`http://10.156.145.178:8080/admin/notice/delete/${num}`, {},
@@ -137,7 +137,7 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
                 <AdminPageStyle.Viewer>
                     <AdminPageStyle.Header>
                         <AdminPageStyle.HeaderTitle>Title</AdminPageStyle.HeaderTitle>
-                        { option == "work" &&
+                        { option === "work" &&
                             <AdminPageStyle.HeaderID>ID</AdminPageStyle.HeaderID>
                         }
                         <AdminPageStyle.HeaderDate>Date</AdminPageStyle.HeaderDate>
@@ -154,9 +154,9 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
                     </AdminPageStyle.List>
                 </AdminPageStyle.Viewer>
                 <AdminPageStyle.PaginationStyle>
-                    <AdminPageStyle.pageOptionBtn onClick={handlePrevBtn}>
-                        <AdminPageStyle.pageBtn>◁</AdminPageStyle.pageBtn>
-                    </AdminPageStyle.pageOptionBtn>
+                    <AdminPageStyle.PageOptionBtn onClick={handlePrevBtn}>
+                        <AdminPageStyle.PageBtn>◁</AdminPageStyle.PageBtn>
+                    </AdminPageStyle.PageOptionBtn>
                     <Pagination
                         currentPage={currentPage}
                         paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
@@ -164,9 +164,9 @@ const AdminPage = ({option, onChangeAuth, currentPage, pageNumLimit, currentPost
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}
                     />
-                    <AdminPageStyle.pageOptionBtn num={num} onClick={handleNextBtn}>
-                        <AdminPageStyle.pageBtn>▷</AdminPageStyle.pageBtn>
-                    </AdminPageStyle.pageOptionBtn>
+                    <AdminPageStyle.PageOptionBtn num={num} onClick={handleNextBtn}>
+                        <AdminPageStyle.PageBtn>▷</AdminPageStyle.PageBtn>
+                    </AdminPageStyle.PageOptionBtn>
                 </AdminPageStyle.PaginationStyle>
             </AdminPageStyle.Contents>
         </AdminPageStyle.Container>

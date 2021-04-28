@@ -29,7 +29,7 @@ exports.get_noticeContent = ( req , res) => {
                 console.log({message: 'notice is empty'});
                 res.status(404).send({message: 'notice is empty'});
             } else {
-                if(rows[0] == undefined) {
+                if(rows[0] === undefined) {
                     console.log({message: 'notice is undefined'});
                     res.status(404).send({message: 'notice is undefined'});
                 } else {

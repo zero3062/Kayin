@@ -31,7 +31,7 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
     })
 
     const handlePrevBtn = () => {
-        if(currentPage != pageNumbers[0]) {
+        if(currentPage !== pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
 
             if((currentPage - 1)%10===0) {
@@ -66,13 +66,13 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
                     <WorkPageStyle.Create type="button" value="Write" onClick={() => history.push('/work/write')}></WorkPageStyle.Create>
                     <WorkPageStyle.UnderBar/>
                     <WorkPageStyle.List>
-                        <WorkList lists={currentPosts} handleWorkNum={handleWorkNum}/>
+                        <WorkList lists={currentPosts} handleWorkNum={() => handleWorkNum()}/>
                     </WorkPageStyle.List>
                 </WorkPageStyle.ListViewer>
                 <WorkPageStyle.PaginationStyle>
-                    <WorkPageStyle.pageOptionBtn onClick={handlePrevBtn}>
-                        <WorkPageStyle.pageBtn>◁</WorkPageStyle.pageBtn>
-                    </WorkPageStyle.pageOptionBtn>
+                    <WorkPageStyle.PageOptionBtn onClick={() => handlePrevBtn()}>
+                        <WorkPageStyle.PageBtn>◁</WorkPageStyle.PageBtn>
+                    </WorkPageStyle.PageOptionBtn>
                     <Pagination
                         currentPage={currentPage}
                         paginate={(pageNumber) => onChangeCurrentpage(pageNumber)}
@@ -80,9 +80,9 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
                         maxPageNumLimit={maxPageNumLimit}
                         minPageNumLimit={minPageNumLimit}
                     />
-                    <WorkPageStyle.pageOptionBtn num={num} onClick={handleNextBtn}>
-                        <WorkPageStyle.pageBtn>▷</WorkPageStyle.pageBtn>
-                    </WorkPageStyle.pageOptionBtn>
+                    <WorkPageStyle.PageOptionBtn num={num} onClick={() => handleNextBtn()}>
+                        <WorkPageStyle.PageBtn>▷</WorkPageStyle.PageBtn>
+                    </WorkPageStyle.PageOptionBtn>
                 </WorkPageStyle.PaginationStyle>
             </WorkPageStyle.Contents>
         </WorkPageStyle.Container>

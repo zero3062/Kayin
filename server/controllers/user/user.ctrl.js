@@ -28,7 +28,7 @@ exports.post_signin = async(req, res) => {
 
         connection.query(`select user_id, password, admin from user where id = '${req.body.user_id}';`, function(err, result) {
             if(!err) {
-                if(result[0].password == req.body.password) {
+                if(result[0].password === req.body.password) {
                     const refreshToken = jwt.sign({},
                         process.env.JWT_SECRET, {
                         expiresIn: '14d',

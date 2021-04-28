@@ -23,7 +23,7 @@ exports.get_workContent = (req, res) => {
                 console.log({message: 'work is empty'});
                 res.status(404).send({message: 'work is empty'});
             } else {
-                if(rows[0] == undefined) {
+                if(rows[0] === undefined) {
                     console.log({message: 'work is undefined'});
                     res.status(404).send({message: 'work is undefined'});
                 } else {
@@ -42,7 +42,7 @@ exports.post_workEdit = (req, res) => {
         if (!req.files)
             return res.status(400).send('No files were uploaded.');
             
-        if(req.body.title == '' || req.body.description == '') 
+        if(req.body.title === '' || req.body.description === '') 
             return res.status(401).send('No Data were undefied'); 
             
         var file = req.files.photo;
@@ -81,7 +81,7 @@ exports.post_workCreate = (req, res) => {
         if (!req.files)
             return res.status(400).send('No files were uploaded.');
             
-        if(req.body.title == '' || req.body.description == '') 
+        if(req.body.title === '' || req.body.description === '') 
             return res.status(401).send('No Data were undefied'); 
             
         var file = req.files.photo;

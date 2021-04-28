@@ -14,7 +14,7 @@ const AdminViewPage = ({ option, title, description, date, user, image_file, onC
     useEffect(() => {
         axios.get(`http://10.156.145.178:8080/admin/${option}/${id}`,{})
         .then(res => {
-            if(option == "notice") 
+            if(option === "notice") 
                 onChangeNotice(res.data.title, res.data.description, res.data.date);
             else 
                 onChangeWork(res.data.title, res.data.description, res.data.date, res.data.user_id, res.data.image_file);
@@ -35,7 +35,7 @@ const AdminViewPage = ({ option, title, description, date, user, image_file, onC
                         <AdminViewPageStyle.WorkHeader>{title}</AdminViewPageStyle.WorkHeader>
                         <AdminViewPageStyle.Information>
                             <AdminViewPageStyle.DateView>{date}</AdminViewPageStyle.DateView>
-                            { option != "notice" &&
+                            { option !== "notice" &&
                                 <AdminViewPageStyle.UserId>{user}</AdminViewPageStyle.UserId>
                             }
                         </AdminViewPageStyle.Information>
@@ -43,7 +43,7 @@ const AdminViewPage = ({ option, title, description, date, user, image_file, onC
                     <AdminViewPageStyle.UnderBar/>
                     <AdminViewPageStyle.MainContents>
                         <AdminViewPageStyle.Description>{description}</AdminViewPageStyle.Description>
-                        { option != "notice" &&
+                        { option !== "notice" &&
                             <AdminViewPageStyle.ImageFile src={image_file}/>
                         }
                     </AdminViewPageStyle.MainContents>

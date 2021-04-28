@@ -7,20 +7,19 @@ import crossImg from '../../assets/images/cross.png';
 import { connect } from 'react-redux';
 import { setAuth } from '../../actions/Auth';
 import { setHeader, setMenubar } from '../../actions/Header';
-import axios from 'axios';
 
 const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, onChangeMenuBar }) => {
     let history = useHistory();
     let location = useLocation();
 
     useEffect(() => {
-        if(location.pathname.indexOf("notice") != -1) {
+        if(location.pathname.indexOf("notice") !== -1) {
             onChangeOption(1);
-        } else if(location.pathname.indexOf("work") != -1 ){
+        } else if(location.pathname.indexOf("work") !== -1 ){
             onChangeOption(2);
-        } else if (location.pathname.indexOf("delete") != -1) {
+        } else if (location.pathname.indexOf("delete") !== -1) {
             onChangeOption(2);
-        } else if (location.pathname.indexOf("admin") != -1) {
+        } else if (location.pathname.indexOf("admin") !== -1) {
             onChangeOption(1);
         } else {
             onChangeOption(0);
@@ -65,20 +64,6 @@ const Header = ({ auth, admin, option, menubar, onChangeAuth, onChangeOption, on
             alert("메뉴 접근 관한이 없습니다");
             onChangeMenuBar(false);
             history.push({pathname: '/'})
-        }
-    }
-
-
-    const handleMenuSelect = (num) => {
-        if(auth) {
-            onChangeOption(num);
-            onChangeMenuBar(false);
-        } else {
-            alert("메뉴 접근 관한이 없습니다");
-            onChangeMenuBar(false);
-            history.push({
-                pathname: '/'
-            })
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
 import * as AdminDeletePageStyle from '../../assets/styles/AdminPage/AdminDelete';
 
@@ -11,10 +11,8 @@ const AdminDeletePage = ({ option, title, description, onChangeText }) => {
     let history = useHistory();
     let {id} = useParams();
 
-    const [fileName, setFileName] = useState('file name...');
-
     useEffect(() => {
-        if(option=="notice") {
+        if(option==="notice") {
             axios.get(`http://10.156.145.178:8080/admin/${option}/${id}`, {})
             .then(res => {
                 console.log(res);
@@ -32,7 +30,7 @@ const AdminDeletePage = ({ option, title, description, onChangeText }) => {
 
         const local = localStorage.getItem('Authentication');
 
-        if(option=="notice") {
+        if(option==="notice") {
             axios.post(`http://10.156.145.178:8080/admin/edit/${id}`, {
                 title, description
             },
