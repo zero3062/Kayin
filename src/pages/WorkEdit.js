@@ -1,11 +1,11 @@
 import React from 'react';
 import WorkWritePage from '../components/WorkPage/WorkWritePage';
 
-const WorkWrite = () => {
+const WorkEdit = () => {
     return(
-        <WorkWritePage option="write">
+        <WorkWritePage option="edit">
         </WorkWritePage>
     )
 }
 
-export default WorkWrite;
+export default WorkEdit;

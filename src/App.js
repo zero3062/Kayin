@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import * as AppStyle from './assets/styles/App';
 import Header from './components/Common/Header';
-import { Main, SignIn, SignUp, Forgot, AdminNotice, AdminWork, AdminEdit, AdminDelete, AdminNoticeView, AdminWorkView, Notice, NoticeView, Work, WorkWrite, WorkView } from './pages/index';
+import { Main, SignIn, SignUp, Forgot, AdminNotice, AdminWork, AdminEdit, AdminDelete, AdminNoticeView, AdminWorkView, Notice, NoticeView, Work, WorkWrite, WorkView, WorkEdit } from './pages/index';
 
 const App = () => {
 
@@ -29,6 +29,7 @@ const App = () => {
                     <Route path="/notice/:id" component={NoticeView}/>
                     <Route path="/work" exact component={Work}/>
                     <Route path="/work/write"  component={WorkWrite}/>
+                    <Route path="/work/edit/:id" component={WorkEdit}/>
                     <Route path="/work/:id" component={WorkView}/>  
                 </Switch>
             </AppStyle.Container>

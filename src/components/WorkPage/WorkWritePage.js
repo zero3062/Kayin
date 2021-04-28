@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import * as WorkWritePageStyle from '../../assets/styles/WorkPage/WorkWrite';
 
 import { connect } from 'react-redux';
@@ -7,14 +7,29 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { setImageInfo, setText } from '../../actions/Write';
 
-const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeImageInfo}) => {
+const WorkWritePage = ({ option, title, description, image_info, onChangeText, onChangeImageInfo}) => {
     let history = useHistory();
+    let {id} = useParams();
 
     const [fileName, setFileName] = useState('file name...');
 
     useEffect(() => {
-        onChangeText('','');
-        onChangeImageInfo('');
+        if(option=="edit") {
+            axios.get(`http://10.156.145.178:8080/work/${id}`,{})
+            .then(res => {
+                onChangeText(res.data.title, res.data.description);
+                onChangeImageInfo(res.data.image_file);
+            })
+            .catch(err => {
+                console.log(err);
+                history.push({
+                    pathname: '/work'
+                })
+            })
+        } else {
+            onChangeText('','');
+            onChangeImageInfo('');
+        }
     }, [])
 
     const handleWrite = () => {
@@ -25,7 +40,10 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
 
         const local = localStorage.getItem('Authentication');
 
-        axios.post(`http://10.156.145.178:8080/work/create`,formData, {
+        const writeUrl = `http://10.156.145.178:8080/work/create`;
+        const editUrl = `http://10.156.145.178:8080/work/edit/${id}`;
+
+        axios.post(option=="edit" ? editUrl : writeUrl, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authentication' : JSON.parse(local).accessToken
@@ -40,7 +58,9 @@ const WorkWritePage = ({ title, description, image_info, onChangeText, onChangeI
     }
 
     const handleCancel = () => {
-        history.push('/work')
+        history.push({
+            pathname: option=="edit" ? `/work/${id}` : '/work'
+        });
     }
 
     const handleFileChange = (e) => {

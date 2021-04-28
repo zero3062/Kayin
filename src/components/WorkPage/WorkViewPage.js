@@ -24,6 +24,12 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
         })
     },[])
 
+    const handleContentEdit = () => {
+        history.push({
+            pathname: `/work/edit/${id}`
+        })
+    }
+
     const handleContentDelete = () => {
 
         const local = localStorage.getItem('Authentication');
@@ -59,7 +65,7 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
                         <WorkViewPageStyle.MainBottom>
                             <WorkViewPageStyle.ImageFile src={image_file}/>
                             <WorkViewPageStyle.BtnBottom>
-                                <WorkViewPageStyle.EditButton>Edit</WorkViewPageStyle.EditButton>
+                                <WorkViewPageStyle.EditButton onClick={() => handleContentEdit()}>Edit</WorkViewPageStyle.EditButton>
                                 <WorkViewPageStyle.DeleteButton onClick={() => handleContentDelete()}>Delete</WorkViewPageStyle.DeleteButton>
                             </WorkViewPageStyle.BtnBottom>
                         </WorkViewPageStyle.MainBottom>

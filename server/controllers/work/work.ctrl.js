@@ -37,7 +37,45 @@ exports.get_workContent = (req, res) => {
     });
 }
 
-exports.post_work = (req, res) => {
+exports.post_workEdit = (req, res) => {
+    getConnection((connection) => {
+        if (!req.files)
+            return res.status(400).send('No files were uploaded.');
+            
+        if(req.body.title == '' || req.body.description == '') 
+            return res.status(401).send('No Data were undefied'); 
+            
+        var file = req.files.photo;
+        var img_name=file.name;
+
+        file.mv('./server/images/'+img_name, function(err) {
+            if (err)
+                return res.status(500).send(err);
+
+            const regex = /\s/gm;
+            const sample_name = img_name.replace(regex, '%20');
+
+            console.log(sample_name);
+
+            const date = new Date().toISOString();
+
+            connection.query(`update work set title='${req.body.title}', description='${req.body.description}', image_file='http://10.156.145.178:8080/images/${sample_name}', date='${date.slice(0,10)}', access=false where work_id=${req.params.id};`, function(err, rows) {
+                if(err) {
+                    console.log(err);
+                    console.log({message: 'work is exist so update failed'});
+                    res.status(404).send({message: 'work is exist so update failed'});
+                } else {
+                    console.log({message: 'update success'});
+                    res.status(200).send({message: 'update success'});
+                }
+            })
+
+            connection.release();
+        })
+    })
+}
+
+exports.post_workCreate = (req, res) => {
 
     getConnection((connection) => {
         if (!req.files)
