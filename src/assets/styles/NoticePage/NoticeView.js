@@ -32,26 +32,28 @@ export const ListViewer = styled.div`
     height: 78vh;
 `;
 
+export const Header = styled.div`
+    display: flex;
+    padding: 10px 0px;
+    margin-left: 2vw;
+`;
+
 export const NoticeHeader = styled.div`
     color: white;
-    width: 70vw;
     font-size: 35px;
-    position: relative;
-    left: 2vw;
-    top: 10px;
-    margin-bottom: 15px;
     word-break: break-all;
-
-    @media screen and (max-width: 850px) {
-        width: 65vw;
-    }
+    flex-grow: 10;
 `;
 
 export const DateView = styled.div`
-    position: absolute;
-    top: 30px;
-    right: 2vw;
+    width: 32vw;
     color: white;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-right: 2vw;
 `;
 
 export const UnderBar = styled.div`

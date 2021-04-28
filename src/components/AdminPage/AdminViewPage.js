@@ -31,13 +31,15 @@ const AdminViewPage = ({ option, title, description, date, user, image_file, onC
         <AdminViewPageStyle.Container>
             <AdminViewPageStyle.Contents>
                 <AdminViewPageStyle.ListViewer>
-                    <AdminViewPageStyle.WorkHeader>{title}</AdminViewPageStyle.WorkHeader>
-                    <AdminViewPageStyle.Information>
-                        <AdminViewPageStyle.DateView>{date}</AdminViewPageStyle.DateView>
-                        { option != "notice" &&
-                            <AdminViewPageStyle.UserId>{user}</AdminViewPageStyle.UserId>
-                        }
-                    </AdminViewPageStyle.Information>
+                    <AdminViewPageStyle.Header>
+                        <AdminViewPageStyle.WorkHeader>{title}</AdminViewPageStyle.WorkHeader>
+                        <AdminViewPageStyle.Information>
+                            <AdminViewPageStyle.DateView>{date}</AdminViewPageStyle.DateView>
+                            { option != "notice" &&
+                                <AdminViewPageStyle.UserId>{user}</AdminViewPageStyle.UserId>
+                            }
+                        </AdminViewPageStyle.Information>
+                    </AdminViewPageStyle.Header>
                     <AdminViewPageStyle.UnderBar/>
                     <AdminViewPageStyle.MainContents>
                         <AdminViewPageStyle.Description>{description}</AdminViewPageStyle.Description>

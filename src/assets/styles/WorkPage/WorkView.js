@@ -32,27 +32,32 @@ export const ListViewer = styled.div`
     height: 78vh;
 `;
 
+export const Header = styled.div`
+    display: flex;
+    padding: 10px 0px;
+    margin-left: 2vw;
+`;
+
 export const WorkHeader = styled.div`
     color: white;
-    width: 80vw;
+    flex-grow: 10;
     font-size: 35px;
-    position: relative;
-    left: 2vw;
-    top: 10px;
-    margin-bottom: 15px;
     word-break: break-all;
 `;
 
 export const Information = styled.div`
-    position: absolute;
-    top: 5px;
-    right: 2vw;
     color: white;
-    line-height: 40px;
-
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    line-height: 30px;
+    margin-right: 2vw;
 `;
 
 export const DateView = styled.div`
+    width: 85px;
 `;
 
 export const UserId = styled.div`
@@ -62,7 +67,6 @@ export const UnderBar = styled.div`
     width: 80vw;
     height: 3px;
     position: relative;
-    top: 4vh;
     left: 50%;
     transform: translateX(-50%);
     background: white;

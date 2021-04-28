@@ -28,8 +28,10 @@ const NoticeViewPage = ({ title, description, date, onChangeNotice}) => {
         <NoticeViewPageStyle.Container>
             <NoticeViewPageStyle.Contents>
                 <NoticeViewPageStyle.ListViewer>
-                    <NoticeViewPageStyle.NoticeHeader>{title}</NoticeViewPageStyle.NoticeHeader>
-                    <NoticeViewPageStyle.DateView>{date}</NoticeViewPageStyle.DateView>
+                    <NoticeViewPageStyle.Header>
+                        <NoticeViewPageStyle.NoticeHeader>{title}</NoticeViewPageStyle.NoticeHeader>
+                        <NoticeViewPageStyle.DateView>{date}</NoticeViewPageStyle.DateView>
+                    </NoticeViewPageStyle.Header>
                     <NoticeViewPageStyle.UnderBar/>
                     <NoticeViewPageStyle.List>
                         {description}

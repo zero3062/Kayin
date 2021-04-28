@@ -28,11 +28,13 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
         <WorkViewPageStyle.Container>
             <WorkViewPageStyle.Contents>
                 <WorkViewPageStyle.ListViewer>
-                    <WorkViewPageStyle.WorkHeader>{title}</WorkViewPageStyle.WorkHeader>
-                    <WorkViewPageStyle.Information>
-                        <WorkViewPageStyle.DateView>{date}</WorkViewPageStyle.DateView>
-                        <WorkViewPageStyle.UserId>{user}</WorkViewPageStyle.UserId>
-                    </WorkViewPageStyle.Information>
+                    <WorkViewPageStyle.Header>
+                        <WorkViewPageStyle.WorkHeader>{title}</WorkViewPageStyle.WorkHeader>
+                        <WorkViewPageStyle.Information>
+                            <WorkViewPageStyle.DateView>{date}</WorkViewPageStyle.DateView>
+                            <WorkViewPageStyle.UserId>{user}</WorkViewPageStyle.UserId>
+                        </WorkViewPageStyle.Information>
+                    </WorkViewPageStyle.Header>
                     <WorkViewPageStyle.UnderBar/>
                     <WorkViewPageStyle.MainContents>
                         <WorkViewPageStyle.Description>{description}</WorkViewPageStyle.Description>
