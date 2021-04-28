@@ -30,6 +30,9 @@ export const ListViewer = styled.div`
     background: rgba(54, 54, 54, 0.26);
     width: 84vw;
     height: 78vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
 `;
 
 export const Header = styled.div`
@@ -78,7 +81,6 @@ export const MainContents = styled.div`
     top: 6vh;
     left: 50%;
     transform: translateX(-50%);
-    height: 61vh;
     width: 75vw;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -89,8 +91,7 @@ export const Description = styled.div`
 `;
 
 export const ImageFile = styled.img`
-    width: 20vw;
+    width: 300px;
     height: auto;
-    position: relative;
-    top: 10vh;
+    margin-top: 50px;
 `;

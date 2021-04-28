@@ -38,7 +38,13 @@ const WorkViewPage = ({ title, description, date, user, image_file, onChangeWork
                     <WorkViewPageStyle.UnderBar/>
                     <WorkViewPageStyle.MainContents>
                         <WorkViewPageStyle.Description>{description}</WorkViewPageStyle.Description>
-                        <WorkViewPageStyle.ImageFile src={image_file}/>
+                        <WorkViewPageStyle.MainBottom>
+                            <WorkViewPageStyle.ImageFile src={image_file}/>
+                            <WorkViewPageStyle.BtnBottom>
+                                <WorkViewPageStyle.EditButton>Edit</WorkViewPageStyle.EditButton>
+                                <WorkViewPageStyle.DeleteButton>Delete</WorkViewPageStyle.DeleteButton>
+                            </WorkViewPageStyle.BtnBottom>
+                        </WorkViewPageStyle.MainBottom>
                     </WorkViewPageStyle.MainContents>
                 </WorkViewPageStyle.ListViewer>
             </WorkViewPageStyle.Contents>

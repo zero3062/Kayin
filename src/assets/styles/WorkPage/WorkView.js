@@ -29,7 +29,10 @@ export const Contents = styled.div`
 export const ListViewer = styled.div`
     background: rgba(54, 54, 54, 0.26);
     width: 84vw;
-    height: 78vh;
+    height: 76vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
 `;
 
 export const Header = styled.div`
@@ -73,12 +76,12 @@ export const UnderBar = styled.div`
 `;
 
 export const MainContents = styled.div`
-    position: relative;
-    top: 6vh;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 61vh;
-    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 2vw;
+    width: 80vw;
     overflow-x: hidden;
     overflow-y: scroll;
 `;
@@ -87,9 +90,44 @@ export const Description = styled.div`
     color: white;
 `;
 
+export const MainBottom = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 80vw;
+    align-items: space-between;
+`;
+
 export const ImageFile = styled.img`
-    width: 20vw;
+    width: 300px;
     height: auto;
-    position: relative;
-    top: 10vh;
+`;
+
+export const BtnBottom = styled.div`
+    display: flex;
+    margin-top: 20px;
+    font-size: 20px;
+`;
+
+export const EditButton = styled.div`
+    color: white;
+    margin-right: 20px;
+    background: rgba(10,10,10,0.5);
+    padding: 7px 20px;
+    cursor: pointer;
+
+    &:hover {
+        color: #FF3636;
+    }
+`;
+
+export const DeleteButton = styled.div`
+    color: white;
+    background: rgba(10,10,10,0.5);
+    padding: 7px 20px;
+    cursor: pointer;
+
+    &:hover {
+        color: #FF3636;
+    }
 `;
