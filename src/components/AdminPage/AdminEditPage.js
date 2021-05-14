@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
-import * as AdminDeletePageStyle from '../../assets/styles/AdminPage/AdminDelete';
+import * as AdminEditPageStyle from '../../assets/styles/AdminPage/AdminEdit';
 
 import { connect } from 'react-redux';
 
 import axios from 'axios';
 import { setText } from '../../actions/Write';
 
-const AdminDeletePage = ({ option, title, description, onChangeText }) => {
+const AdminEditPage = ({ option, title, description, onChangeText }) => {
     let history = useHistory();
     let {id} = useParams();
 
@@ -83,17 +83,17 @@ const AdminDeletePage = ({ option, title, description, onChangeText }) => {
     }
 
     return(
-        <AdminDeletePageStyle.Container>
-            <AdminDeletePageStyle.Contents>
-                <AdminDeletePageStyle.ListViewer>
-                    <AdminDeletePageStyle.WorkWriteHeader placeholder="Title" onChange={(e) => onChangeText(e.target.value, description)} value={title}/>
-                    <AdminDeletePageStyle.WorkWriteCreate type="button" value="Write" onClick={() => handleWrite()}/>
-                    <AdminDeletePageStyle.WorkWriteCancel type="button" value="Cancel" onClick={() => handleCancel()}/>
-                    <AdminDeletePageStyle.UnderBar/>
-                    <AdminDeletePageStyle.TextArea placeholder="Description" onChange={(e) => onChangeText(title, e.target.value)} value={description}/>
-                </AdminDeletePageStyle.ListViewer>
-            </AdminDeletePageStyle.Contents>
-        </AdminDeletePageStyle.Container>
+        <AdminEditPageStyle.Container>
+            <AdminEditPageStyle.Contents>
+                <AdminEditPageStyle.ListViewer>
+                    <AdminEditPageStyle.WorkWriteHeader placeholder="Title" onChange={(e) => onChangeText(e.target.value, description)} value={title}/>
+                    <AdminEditPageStyle.WorkWriteCreate type="button" value="Write" onClick={() => handleWrite()}/>
+                    <AdminEditPageStyle.WorkWriteCancel type="button" value="Cancel" onClick={() => handleCancel()}/>
+                    <AdminEditPageStyle.UnderBar/>
+                    <AdminEditPageStyle.TextArea placeholder="Description" onChange={(e) => onChangeText(title, e.target.value)} value={description}/>
+                </AdminEditPageStyle.ListViewer>
+            </AdminEditPageStyle.Contents>
+        </AdminEditPageStyle.Container>
     )
 }
 
@@ -110,6 +110,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const AdminDeletePageConnect = connect(mapStateToProps, mapDispatchToProps)(AdminDeletePage);
+const AdminEditPageConnect = connect(mapStateToProps, mapDispatchToProps)(AdminEditPage);
 
-export default AdminDeletePageConnect;
+export default AdminEditPageConnect;

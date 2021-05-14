@@ -36,7 +36,7 @@ const NoticePage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxP
         if(currentPage !== pageNumbers[0]) {
             onChangeCurrentpage(currentPage - 1);
 
-            if((currentPage - 1)%10===0) {
+            if((currentPage - 1)%pageNumLimit===0) {
                 onChangeMaxPageNumLimit(maxPageNumLimit - pageNumLimit);
                 onChangeMinPageNumLimit(minPageNumLimit - pageNumLimit);
             }

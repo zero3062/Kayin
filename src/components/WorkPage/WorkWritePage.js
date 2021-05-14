@@ -38,6 +38,8 @@ const WorkWritePage = ({ option, title, description, image_info, onChangeText, o
         formData.append("description", description);
         formData.append("photo", image_info);
 
+        console.log(image_info);
+
         const local = localStorage.getItem('Authentication');
 
         const writeUrl = `http://10.156.145.178:8080/work/create`;

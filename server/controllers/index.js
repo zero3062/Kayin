@@ -6,5 +6,4 @@ router.use('/notice', require('./notice'));
 router.use('/work', require('./work'));
 router.use('/admin', require('./admin'));
 
-
 module.exports = router;

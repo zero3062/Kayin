@@ -66,7 +66,7 @@ const WorkPage = ({ currentPage, pageNumLimit, currentPosts, pageNumbers, maxPag
                     <WorkPageStyle.Create type="button" value="Write" onClick={() => history.push('/work/write')}></WorkPageStyle.Create>
                     <WorkPageStyle.UnderBar/>
                     <WorkPageStyle.List>
-                        <WorkList lists={currentPosts} handleWorkNum={() => handleWorkNum()}/>
+                        <WorkList lists={currentPosts} handleWorkNum={handleWorkNum}/>
                     </WorkPageStyle.List>
                 </WorkPageStyle.ListViewer>
                 <WorkPageStyle.PaginationStyle>

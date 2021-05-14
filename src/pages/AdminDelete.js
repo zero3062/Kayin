@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminWritePage from '../components/AdminPage/AdminDeletePage';
+import AdminWritePage from '../components/AdminPage/AdminEditPage';
 
 const AdminDelete = () => {
     return(
